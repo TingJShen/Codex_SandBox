@@ -4,6 +4,10 @@ Date: 2026-05-08
 
 This note records the current paper-level formulation of the V13-style method. It is written to address a key narrative issue found during discussion: the paper must not jump directly from a parameter-space Taylor expansion to DomainVec. The bridge is that domain mixing first rewrites the GRPO batch gradient as a weighted sum of domain-level expected gradients; DomainVec distance is then introduced only as an observable proxy for the otherwise expensive domain-level first-order alignment coefficient.
 
+## Selected Main Figure
+
+![Taylor-Guided GRPO Data Mixing framework](figures/taylor_guided_grpo_data_mixing_framework.png)
+
 ## Problem Definition
 
 我们研究多领域数据上的大语言模型强化学习微调问题。给定训练语料
