@@ -16,11 +16,17 @@ Generated for the GitHub archive directory:
 | `CURRENT_PROGRESS_20260507.md` | `2146` | Last successful live progress snapshot. |
 | `RESULTS_SUMMARY.md` | `3948` | Compact result summary. |
 | `REMOTE_PATHS_AND_RESUME.md` | `6499` | Remote paths, monitor commands, resume commands. |
+| `training/README.md` | `dynamic` | V13 training archive index. |
+| `training/V13_TRAINING_WORKFLOW_20260507.md` | `dynamic` | V13 training workflow, environment, launch parameters, and operational rules. |
+| `training/V13_TRAINING_RESULTS_20260507.md` | `dynamic` | Attempt-by-attempt V13 training status and failure analysis. |
 | `results/eval_result_log_1_5B.md` | `135889` | Full result log copied from local workspace. |
+| `logs/v13_8a100_gpus0_7_bsz64_oom_excerpt.log` | `dynamic` | Minimal excerpt of the V13 bsz64 OOM result. |
+| `logs/watcher_gpus0_7_q25_bsz96_20260507_excerpt.log` | `dynamic` | Minimal excerpt of the GPU0/GPU7 watcher state. |
 | `scripts/arena_answers_priority_20260507.sh` | `7281` | Arena answer driver. |
 | `scripts/arena_judge_priority_20260507.sh` | `8746` | Arena judge driver. |
 | `scripts/arena_token_usage.py` | `4501` | Token usage summarizer. |
 | `scripts/arena_tolerant_summary.py` | `4500` | Tolerant Arena score summarizer. |
+| `scripts/train_v13_8a100_gpus0_7_wait_free_bsz96.sh` | `dynamic` | Reproducible V13 watcher/launcher for GPU0/GPU7. |
 | `manifests/manifest_qwen3_arena_p1_20260507.tsv` | `1342` | Qwen3 P1 Arena model list. |
 | `manifests/manifest_v11_arena_p2_20260507.tsv` | `2081` | V11 P2 Arena model list. |
 | `support_cache/o200k_base.tiktoken` | `3613922` | Small tiktoken cache file for offline-safe answer post-processing. |

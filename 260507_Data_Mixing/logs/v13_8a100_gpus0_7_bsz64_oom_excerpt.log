@@ -1,0 +1,29 @@
+Experiment:
+  train_8a100_v13_qwen25_1_5b_2gpu_gpus0_7_bsz64_mini32_util060_noexpand_save100_20260507_050620
+
+Key successful markers:
+  [V13] Using RayDAPOTrainerV13 with sample_taylor_v13 method
+  train dataset len: 18035
+  train filter dataset len: 17681
+  validation dataset len: 279
+  validation filter dataset len: 259
+  [V13] Fixed shadow anchors: {'general': 128, 'code': 128, 'math': 128}
+  SampleTaylorBatchSampler initialized:
+    Categories: ['math', 'code', 'general']
+    Samples per category: {'math': 5454, 'code': 4730, 'general': 7113}
+    Batch size: 64
+    Candidate multiplier: 4
+  [V13] step=1 weights={'math': 0.31904458701610566, 'code': 0.34183641225099565, 'general': 0.3391190007328987}
+
+Failure excerpt:
+  ray.exceptions.RayTaskError(OutOfMemoryError):
+  ray::WorkerDict.actor_rollout_update_actor()
+  torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 90.00 MiB.
+  GPU 0 has a total capacity of 79.25 GiB of which 74.25 MiB is free.
+  Including non-PyTorch memory, this process has 16.13 GiB memory in use.
+  Process 4184880 has 62.98 GiB memory in use.
+
+Interpretation:
+  The V13 route and sampler were reached.
+  The failure was caused by another user's large GPU0 allocation, not by sample_taylor_v13 dispatch.
+  No checkpoint was produced because the run failed before the first save boundary.

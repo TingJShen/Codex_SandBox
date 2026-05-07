@@ -71,3 +71,15 @@ This is not a same-judge local 32B score. It is only an external reference ancho
 | V11 P2 | Answers in progress. No local 32B judgment result yet at last successful snapshot. |
 
 When the two judge watchers finish, append their `arena_tolerant_summary.csv` and `arena_token_usage.csv` values to `results/eval_result_log_1_5B.md`.
+
+## V13 Training Status Added on 2026-05-07
+
+Detailed training notes are archived in `training/`.
+
+| Host | GPUs | Model | Config | Status |
+| --- | --- | --- | --- | --- |
+| 8A100 | 0,4 | Qwen2.5-1.5B-Instruct | `bsz32`, `mini16`, `util0.40`, save100 | Smoke reached step 4, then stopped because target GPUs changed. |
+| 8A100 | 0,7 | Qwen2.5-1.5B-Instruct | `bsz64`, `mini32`, `util0.60`, save100, no expandable segments | Entered `sample_taylor_v13`, fixed shadow anchors, reached V13 step 1, then failed during actor optimizer due external GPU0 memory occupation. |
+| 8A100 | 0,7 | Qwen2.5-1.5B-Instruct | watcher for `bsz96`, `mini48`, `util0.70`, save100 | Waiting until GPU0 and GPU7 both have at least 70000 MiB free; not launched at the last recorded snapshot. |
+
+No new checkpoint from the failed GPU0/GPU7 `bsz64` run. The failure was an external GPU contention issue, not a V13 method-dispatch failure.

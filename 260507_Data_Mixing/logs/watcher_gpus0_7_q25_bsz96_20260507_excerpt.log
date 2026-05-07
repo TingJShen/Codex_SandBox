@@ -1,0 +1,13 @@
+Watcher:
+  /zhdd/home/tjshen/260415_ArcherA100/v13/output_8A100_2gpu/_watch_gpus0_7_q25_bsz96_20260507_052806/watcher.log
+
+Initial output:
+  [Thu May  7 05:28:06 AM UTC 2026] watcher started on young, waiting for GPU0 and GPU7 free >= 70000 MiB
+  WORK_DIR=/zhdd/home/tjshen/260415_ArcherA100/v13
+  SCRIPT=/zhdd/home/tjshen/260415_ArcherA100/v13/dynamic_train_v13_a100_smoke_bsz4_20step.sh
+  [Thu May  7 05:28:07 AM UTC 2026] gpu_state=0, 63111, 18042, 98;7, 58057, 23096, 38
+
+Interpretation:
+  The watcher was alive.
+  GPU0 and GPU7 were not free enough for the planned bsz96 launch.
+  The watcher correctly waited instead of launching into an expected OOM.

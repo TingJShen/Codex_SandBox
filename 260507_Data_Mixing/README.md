@@ -12,8 +12,10 @@ It is intentionally lightweight: it keeps procedures, manifests, scripts, result
 | `RESULTS_SUMMARY.md` | Compact result summary for math, code, and Arena-Hard. |
 | `CURRENT_PROGRESS_20260507.md` | Last successful live progress snapshot and pending work. |
 | `REMOTE_PATHS_AND_RESUME.md` | Remote paths, resume commands, and monitoring commands. |
+| `training/` | V13 training workflow, attempt table, live GPU0/GPU7 watcher state, and OOM analysis. |
 | `results/eval_result_log_1_5B.md` | Full local result log copied from `D:\Codex_Sandbox\Huawei_Hard\eval_result_log_1_5B.md`. |
 | `scripts/` | Arena-Hard answer/judge drivers and summary utilities used for the 2026-05-07 priority sweep. |
+| `logs/` | Small V13 training and watcher log excerpts; full logs remain on `/zhdd`. |
 | `manifests/` | Model manifests for Qwen3 P1 and V11 P2 Arena sweeps. |
 | `support_cache/o200k_base.tiktoken` | Small `tiktoken` BPE cache file used to avoid remote download failure. |
 
@@ -48,6 +50,7 @@ As of the last successful live check on 2026-05-07 06:54 UTC:
 | Arena judge | Watchers are alive but waiting for all answers in each manifest plus enough A100 GPU memory. |
 | Existing math/code | Recorded in `results/eval_result_log_1_5B.md`; 1.5B V11/V12 and selected Qwen3-2B models have math/code coverage. |
 | Existing Arena temp=0.6 | 1.5B base, V11 step240, and V12 step100-800 are complete in the local log. |
+| V13 training | `sample_taylor_v13` route verified to enter step 1 on 8A100 GPU0/GPU7; `bsz64` failed at actor optimizer because other users occupied most of GPU0/GPU7. A watcher is waiting to relaunch `bsz96/mini48/util0.70` when both cards have at least 70000 MiB free. |
 
 ## Important Operational Rules
 
@@ -59,4 +62,19 @@ Do not use /tmp.
 Put logs/scripts/temp/cache under /zhdd/home/tjshen/260415_ArcherA100.
 Check GPU memory capacity, not utilization, when deciding whether a GPU can accept a job.
 Prefer environment/cache fixes over changing model/evaluation logic.
+```
+
+## Latest V13 Training Notes
+
+The current V13 training archive is under:
+
+```text
+training/
+```
+
+Start with:
+
+```text
+training/V13_TRAINING_WORKFLOW_20260507.md
+training/V13_TRAINING_RESULTS_20260507.md
 ```
