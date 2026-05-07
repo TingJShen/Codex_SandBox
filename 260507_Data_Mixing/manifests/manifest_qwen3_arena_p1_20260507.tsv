@@ -1,0 +1,10 @@
+model	model_path
+Qwen3-2B-base	/zhdd/home/tjshen/260415_ArcherA100/model_overlays/Qwen3-2B_with_generation_config
+ArcherCodeR-V12-Qwen3-2B-8A100-step100	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-8A100-step100-merged
+ArcherCodeR-V12-Qwen3-2B-8A100-step200	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-8A100-step200-merged
+ArcherCodeR-V12-Qwen3-2B-8A100-step300	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-8A100-step300-merged
+ArcherCodeR-V12-Qwen3-2B-8A100-step400	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-8A100-step400-merged
+ArcherCodeR-V12-Qwen3-2B-5090Lian-step100	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-5090Lian-step100-merged
+ArcherCodeR-V12-Qwen3-2B-5090Lian-20260427-step100	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-5090Lian-20260427-step100-merged
+ArcherCodeR-V12-Qwen3-2B-5090Lian-20260427-085531-step100	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-5090Lian-20260427-085531-step100-merged
+ArcherCodeR-V12-Qwen3-2B-5090Lian-20260428-step100	/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-5090Lian-20260428-step100-merged

@@ -1,0 +1,13 @@
+model	model_path
+ArcherCodeR-V11-step80-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_80_merged
+ArcherCodeR-V11-step160-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_160_merged
+ArcherCodeR-V11-step320-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_320_merged
+ArcherCodeR-V11-step400-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_400_merged
+ArcherCodeR-V11-step480-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_480_merged
+ArcherCodeR-V11-step560-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_560_merged
+ArcherCodeR-V11-step640-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_640_merged
+ArcherCodeR-V11-step720-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_720_merged
+ArcherCodeR-V11-step800-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_800_merged
+ArcherCodeR-V11-step880-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_880_merged
+ArcherCodeR-V11-step960-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_960_merged
+ArcherCodeR-V11-step1040-merged	/zhdd/home/tjshen/260415_ArcherA100/v11/output_A100/ArcherCodeR-V11-8A100/full_8a100_gpus2_7_bsz8_save80_v11_20260415/global_step_1040_merged
