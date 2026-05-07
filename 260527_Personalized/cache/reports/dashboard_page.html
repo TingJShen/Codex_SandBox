@@ -1,0 +1,871 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COL Realtime Orchestration</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --line: #d8dee8;
+      --ink: #1f2933;
+      --muted: #657386;
+      --blue: #2f6fbd;
+      --green: #20865f;
+      --amber: #a05e00;
+      --red: #a33c3c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    header {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    h1 { margin: 0; font-size: 20px; font-weight: 650; }
+    main {
+      display: grid;
+      grid-template-columns: minmax(760px, 1fr) 460px;
+      gap: 16px;
+      padding: 16px;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      min-width: 0;
+    }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    button, select {
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 10px;
+      font: inherit;
+    }
+    button { cursor: pointer; }
+    .section-head {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-head h2 { margin: 0; font-size: 15px; }
+    .node-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 14px;
+      max-height: calc(100vh - 150px);
+      overflow: auto;
+    }
+    .node {
+      min-height: 168px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      grid-template-rows: minmax(154px, auto) 8px;
+      overflow: hidden;
+      background: #fcfdff;
+    }
+    .node-inspect {
+      height: 28px;
+      margin: 10px 12px 0;
+      padding: 0 8px;
+      font-size: 12px;
+    }
+    .node.running { border-color: var(--blue); box-shadow: inset 0 3px 0 var(--blue); }
+    .node.done { border-color: #9fd2bb; box-shadow: inset 0 3px 0 var(--green); }
+    .node.failed { border-color: #d79a9a; box-shadow: inset 0 3px 0 var(--red); }
+    .node-title {
+      padding: 12px 12px 6px;
+      font-size: 15px;
+      font-weight: 650;
+      min-height: 48px;
+      overflow-wrap: anywhere;
+    }
+    .node-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 12px 12px;
+      color: var(--muted);
+      font-size: 12px;
+      align-content: flex-start;
+    }
+    .pill {
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #eef2f7;
+      white-space: nowrap;
+    }
+    .node-output {
+      grid-row: 1;
+      grid-column: 2;
+      border-left: 1px solid #eef1f5;
+      padding: 10px 12px;
+      overflow: auto;
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #263241;
+      min-height: 154px;
+      max-height: 260px;
+      white-space: pre-wrap;
+    }
+    .progress {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      height: 8px;
+      background: #edf1f5;
+    }
+    .bar {
+      height: 100%;
+      width: 0;
+      background: var(--blue);
+      transition: width 160ms linear;
+    }
+    .node.done .bar { background: var(--green); }
+    .side {
+      display: grid;
+      grid-template-rows: 30vh 28vh minmax(280px, 1fr);
+      gap: 16px;
+      max-height: calc(100vh - 100px);
+    }
+    .flow-graph {
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-size: 13px;
+    }
+    .graph-toolbar {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-bottom: 1px solid #eef1f5;
+      background: #fbfcfe;
+    }
+    .graph-toolbar button {
+      height: 26px;
+      padding: 0 8px;
+      font-size: 12px;
+    }
+    .graph-viewport {
+      position: relative;
+      height: calc(100% - 38px);
+      min-height: 210px;
+      overflow: hidden;
+      cursor: grab;
+      background:
+        linear-gradient(#f6f8fb 1px, transparent 1px),
+        linear-gradient(90deg, #f6f8fb 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .graph-viewport.dragging { cursor: grabbing; }
+    .graph-canvas {
+      position: relative;
+      width: 820px;
+      height: 320px;
+      transform-origin: 0 0;
+    }
+    .graph-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .graph-edge {
+      stroke: #aeb8c6;
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .graph-edge.loop {
+      stroke: var(--amber);
+      stroke-dasharray: 5 4;
+    }
+    .graph-node {
+      position: absolute;
+      display: grid;
+      grid-template-columns: 16px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      width: 240px;
+      padding: 7px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 8px 10px;
+      box-shadow: 0 5px 16px rgba(31, 41, 51, 0.06);
+      cursor: pointer;
+    }
+    .graph-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #c8d0db;
+    }
+    .graph-node.running .graph-dot { background: var(--blue); }
+    .graph-node.done .graph-dot { background: var(--green); }
+    .graph-node.failed .graph-dot { background: var(--red); }
+    .graph-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 650;
+    }
+    .graph-status { color: var(--muted); font-size: 12px; }
+    .timeline, .event-log {
+      padding: 12px 14px;
+      overflow: auto;
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 12px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      height: 100%;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--amber);
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .status-dot.live { background: var(--green); }
+    .status-dot.done { background: var(--blue); }
+    .agent-detail {
+      position: fixed;
+      inset: 28px;
+      z-index: 20;
+      display: none;
+      grid-template-rows: auto minmax(0, 1fr);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 24px 70px rgba(31, 41, 51, 0.28);
+      overflow: hidden;
+    }
+    .agent-detail.open { display: grid; }
+    .agent-detail-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfe;
+    }
+    .agent-detail-title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+      min-width: 0;
+    }
+    .agent-detail-title strong {
+      font-size: 17px;
+      overflow-wrap: anywhere;
+    }
+    .agent-detail-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .agent-detail-actions button {
+      height: 28px;
+      padding: 0 8px;
+      font-size: 12px;
+    }
+    .agent-detail-body {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      min-height: 0;
+    }
+    .agent-detail-meta {
+      border-right: 1px solid var(--line);
+      padding: 14px;
+      overflow: auto;
+      background: #fcfdff;
+    }
+    .agent-detail-meta dl {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 8px 10px;
+      margin: 0;
+      font-size: 13px;
+    }
+    .agent-detail-meta dt { color: var(--muted); }
+    .agent-detail-meta dd { margin: 0; overflow-wrap: anywhere; }
+    .agent-detail-output {
+      padding: 16px;
+      overflow: auto;
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      color: #1f2a37;
+    }
+    .detail-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 19;
+      display: none;
+      background: rgba(31, 41, 51, 0.32);
+    }
+    .detail-backdrop.open { display: block; }
+    @media (max-width: 980px) {
+      main { grid-template-columns: 1fr; }
+      .node-grid { max-height: none; }
+      .side { max-height: none; }
+      .agent-detail { inset: 12px; }
+      .agent-detail-body { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); }
+      .agent-detail-meta { border-right: 0; border-bottom: 1px solid var(--line); max-height: 210px; }
+    }
+    @media (max-width: 620px) {
+      header { height: auto; align-items: flex-start; flex-direction: column; gap: 10px; padding: 14px; }
+      .node {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 220px 8px;
+      }
+      .node-output {
+        grid-row: 3;
+        grid-column: 1;
+        border-left: 0;
+        border-top: 1px solid #eef1f5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>COL Realtime Orchestration</h1>
+    <div class="toolbar">
+      <span><span id="status-dot" class="status-dot"></span><span id="status-text">idle</span></span>
+      <select id="mode">
+        <option value="demo" selected>Demo Simulation</option>
+        <option value="real">Real Codex Threads</option>
+      </select>
+      <select id="speed">
+        <option value="1" selected>1x</option>
+        <option value="0.5">2x</option>
+        <option value="0.2">5x</option>
+      </select>
+      <button id="latest" type="button">Load Latest</button>
+      <button id="restart" type="button">Start</button>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="section-head">
+        <h2>Live Node State</h2>
+        <span id="summary" class="pill">waiting</span>
+      </div>
+      <div id="node-grid" class="node-grid"></div>
+    </section>
+    <div class="side">
+      <section>
+        <div class="section-head"><h2>Flow Graph</h2></div>
+        <div id="flow-graph" class="flow-graph"></div>
+      </section>
+      <section>
+        <div class="section-head"><h2>Timeline</h2></div>
+        <div id="timeline" class="timeline"></div>
+      </section>
+      <section>
+        <div class="section-head"><h2>Streaming Output</h2></div>
+        <div id="event-log" class="event-log"></div>
+      </section>
+    </div>
+  </main>
+  <div id="detail-backdrop" class="detail-backdrop"></div>
+  <aside id="agent-detail" class="agent-detail" aria-hidden="true">
+    <div class="agent-detail-head">
+      <div class="agent-detail-title">
+        <strong id="detail-title">Agent Detail</strong>
+        <span id="detail-status" class="pill">waiting</span>
+      </div>
+      <div class="agent-detail-actions">
+        <button id="detail-zoom-out" type="button">-</button>
+        <button id="detail-zoom-reset" type="button">100%</button>
+        <button id="detail-zoom-in" type="button">+</button>
+        <button id="detail-close" type="button">Close</button>
+      </div>
+    </div>
+    <div class="agent-detail-body">
+      <div class="agent-detail-meta">
+        <dl id="detail-meta"></dl>
+      </div>
+      <div id="detail-output" class="agent-detail-output"></div>
+    </div>
+  </aside>
+  <script>
+    const nodes = new Map();
+    const nodeModels = new Map();
+    const graphNodes = new Map();
+    const graphState = { scale: 1, x: 0, y: 0, dragging: false, lastX: 0, lastY: 0 };
+    const detailState = { nodeId: null, scale: 1 };
+    let source = null;
+    let pollTimer = null;
+    let activeRunId = null;
+    let activeEventCount = 0;
+
+    function byId(id) { return document.getElementById(id); }
+
+    async function loadLatest() {
+      if (source) source.close();
+      nodes.clear();
+      nodeModels.clear();
+      graphNodes.clear();
+      closeAgentDetail();
+      byId("node-grid").innerHTML = "";
+      byId("flow-graph").innerHTML = "";
+      byId("timeline").textContent = "";
+      byId("event-log").textContent = "";
+      byId("summary").textContent = "loading latest";
+      byId("status-text").textContent = "loading";
+      byId("status-dot").className = "status-dot live";
+      const response = await fetch("/latest-events", { cache: "no-store" });
+      const payload = await response.json();
+      for (const event of payload.events || []) applyEvent(event);
+    }
+
+    function startRun() {
+      if (source) source.close();
+      nodes.clear();
+      nodeModels.clear();
+      graphNodes.clear();
+      closeAgentDetail();
+      byId("node-grid").innerHTML = "";
+      byId("flow-graph").innerHTML = "";
+      byId("timeline").textContent = "";
+      byId("event-log").textContent = "";
+      byId("summary").textContent = "connecting";
+      byId("status-text").textContent = "live";
+      byId("status-dot").className = "status-dot live";
+      const params = new URLSearchParams({
+        mode: byId("mode").value,
+        speed: byId("speed").value
+      });
+      source = new EventSource(`/events?${params.toString()}`);
+      source.onmessage = event => applyEvent(JSON.parse(event.data));
+      source.onerror = () => {
+        byId("status-text").textContent = "disconnected";
+        byId("status-dot").className = "status-dot";
+      };
+    }
+
+    function applyEvent(event) {
+      appendTimeline(event);
+      if (event.type === "run_started") {
+        for (const node of event.nodes) createNode(node);
+        createFlowGraph(event.nodes || [], event.edges || []);
+        byId("summary").textContent = `${event.nodes.length} nodes`;
+        activeRunId = event.run_id || activeRunId;
+      }
+      if (event.type === "node_started") markNode(event.node_id, "running", event);
+      if (event.type === "node_output") appendNodeOutput(event);
+      if (event.type === "artifact_written" || event.type === "artifact_processed") {
+        appendLog(`${event.node_id}> ${event.message || event.path}`);
+        recordArtifact(event);
+        markGraphNode(event.node_id, "running", event.type);
+      }
+      if (event.type === "node_completed") {
+        markNode(event.node_id, event.status === "passed" ? "done" : "failed", event);
+      }
+      if (event.type === "run_completed") {
+        byId("summary").textContent = event.status;
+        byId("status-text").textContent = "completed";
+        byId("status-dot").className = "status-dot done";
+        if (source) source.close();
+      }
+    }
+
+    function createNode(node) {
+      nodeModels.set(node.id, {
+        ...node,
+        status: "waiting",
+        output: "",
+        artifacts: []
+      });
+      const card = document.createElement("article");
+      card.className = "node";
+      card.id = `node-${node.id}`;
+      card.innerHTML = `
+        <div>
+          <div class="node-title"></div>
+          <div class="node-meta"></div>
+          <button type="button" class="node-inspect">Inspect</button>
+        </div>
+        <div class="node-output"></div>
+        <div class="progress"><div class="bar"></div></div>
+      `;
+      card.querySelector(".node-title").textContent = node.label;
+      card.querySelector(".node-meta").innerHTML = `
+        <span class="pill">${node.role}</span>
+        <span class="pill">${node.phase}</span>
+        <span class="pill">${node.duration_seconds}s est</span>
+      `;
+      card.querySelector(".node-inspect").onclick = () => openAgentDetail(node.id);
+      card.ondblclick = () => openAgentDetail(node.id);
+      nodes.set(node.id, card);
+      byId("node-grid").appendChild(card);
+    }
+
+    function createFlowGraph(nodesList, edges) {
+      const graph = byId("flow-graph");
+      graph.innerHTML = "";
+      graphNodes.clear();
+      const toolbar = document.createElement("div");
+      toolbar.className = "graph-toolbar";
+      toolbar.innerHTML = `
+        <button type="button" data-action="zoom-in">+</button>
+        <button type="button" data-action="zoom-out">-</button>
+        <button type="button" data-action="fit">Fit</button>
+        <button type="button" data-action="reset">Reset</button>
+      `;
+      const viewport = document.createElement("div");
+      viewport.className = "graph-viewport";
+      const canvas = document.createElement("div");
+      canvas.className = "graph-canvas";
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.classList.add("graph-svg");
+      svg.setAttribute("viewBox", "0 0 820 320");
+      svg.innerHTML = `<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#aeb8c6"></path></marker></defs>`;
+      canvas.appendChild(svg);
+      viewport.appendChild(canvas);
+      graph.appendChild(toolbar);
+      graph.appendChild(viewport);
+
+      const positions = layoutGraph(nodesList, edges);
+      for (const edge of edges || []) {
+        const from = positions.get(edge.from);
+        const to = positions.get(edge.to);
+        if (!from || !to) continue;
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const isLoop = to.x <= from.x;
+        path.classList.add("graph-edge");
+        if (isLoop) path.classList.add("loop");
+        const startX = from.x + 240;
+        const startY = from.y + 18;
+        const endX = to.x;
+        const endY = to.y + 18;
+        const midX = isLoop ? Math.max(startX, endX) + 44 : (startX + endX) / 2;
+        path.setAttribute("d", `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
+        path.setAttribute("marker-end", "url(#arrow)");
+        svg.appendChild(path);
+      }
+
+      for (const node of nodesList) {
+        const pos = positions.get(node.id);
+        if (!pos) continue;
+        const row = document.createElement("div");
+        row.className = "graph-node";
+        row.id = `graph-${node.id}`;
+        row.style.left = `${pos.x}px`;
+        row.style.top = `${pos.y}px`;
+        row.innerHTML = `
+          <span class="graph-dot"></span>
+          <span class="graph-label"></span>
+          <span class="graph-status">waiting</span>
+        `;
+        row.querySelector(".graph-label").textContent = node.label || node.id;
+        row.onclick = () => openAgentDetail(node.id);
+        graphNodes.set(node.id, row);
+        canvas.appendChild(row);
+      }
+      wireGraphControls(graph, viewport, canvas);
+      fitGraph(viewport, canvas);
+    }
+
+    function wireGraphControls(graph, viewport, canvas) {
+      graph.querySelector('[data-action="zoom-in"]').onclick = () => zoomGraph(viewport, canvas, 1.18);
+      graph.querySelector('[data-action="zoom-out"]').onclick = () => zoomGraph(viewport, canvas, 0.84);
+      graph.querySelector('[data-action="fit"]').onclick = () => fitGraph(viewport, canvas);
+      graph.querySelector('[data-action="reset"]').onclick = () => {
+        graphState.scale = 1;
+        graphState.x = 0;
+        graphState.y = 0;
+        applyGraphTransform(canvas);
+      };
+      viewport.onwheel = event => {
+        event.preventDefault();
+        zoomGraph(viewport, canvas, event.deltaY < 0 ? 1.08 : 0.92, event.offsetX, event.offsetY);
+      };
+      viewport.onpointerdown = event => {
+        graphState.dragging = true;
+        graphState.lastX = event.clientX;
+        graphState.lastY = event.clientY;
+        viewport.classList.add("dragging");
+        viewport.setPointerCapture(event.pointerId);
+      };
+      viewport.onpointermove = event => {
+        if (!graphState.dragging) return;
+        graphState.x += event.clientX - graphState.lastX;
+        graphState.y += event.clientY - graphState.lastY;
+        graphState.lastX = event.clientX;
+        graphState.lastY = event.clientY;
+        applyGraphTransform(canvas);
+      };
+      viewport.onpointerup = event => {
+        graphState.dragging = false;
+        viewport.classList.remove("dragging");
+        viewport.releasePointerCapture(event.pointerId);
+      };
+    }
+
+    function zoomGraph(viewport, canvas, factor, originX = viewport.clientWidth / 2, originY = viewport.clientHeight / 2) {
+      const previous = graphState.scale;
+      const next = Math.max(0.35, Math.min(2.4, previous * factor));
+      graphState.x = originX - (originX - graphState.x) * (next / previous);
+      graphState.y = originY - (originY - graphState.y) * (next / previous);
+      graphState.scale = next;
+      applyGraphTransform(canvas);
+    }
+
+    function fitGraph(viewport, canvas) {
+      const scaleX = (viewport.clientWidth - 24) / canvas.offsetWidth;
+      const scaleY = (viewport.clientHeight - 24) / canvas.offsetHeight;
+      graphState.scale = Math.max(0.35, Math.min(1.25, Math.min(scaleX, scaleY)));
+      graphState.x = 12;
+      graphState.y = 12;
+      applyGraphTransform(canvas);
+    }
+
+    function applyGraphTransform(canvas) {
+      canvas.style.transform = `translate(${graphState.x}px, ${graphState.y}px) scale(${graphState.scale})`;
+    }
+
+    function layoutGraph(nodesList, edges) {
+      const positions = new Map();
+      const children = new Set((edges || []).map(edge => edge.to));
+      const roots = nodesList.filter(node => !children.has(node.id));
+      const middle = nodesList.filter(node => node.parallel_group);
+      const sinks = nodesList.filter(node => !node.parallel_group && !roots.includes(node));
+      const columns = [roots, middle, sinks].filter(group => group.length);
+      const xValues = [12, 260, 508];
+      columns.forEach((group, col) => {
+        const gap = Math.max(58, 250 / Math.max(1, group.length));
+        group.forEach((node, index) => {
+          positions.set(node.id, { x: xValues[col] || 12 + col * 248, y: 28 + index * gap });
+        });
+      });
+      return positions;
+    }
+
+    function markNode(id, state, event) {
+      const card = nodes.get(id);
+      if (!card) return;
+      updateNodeModel(id, {
+        status: event.status || state,
+        thread_id: event.thread_id || (nodeModels.get(id) && nodeModels.get(id).thread_id),
+        progress: state === "done" ? 1 : (nodeModels.get(id) && nodeModels.get(id).progress) || 0
+      });
+      card.classList.remove("running", "done", "failed");
+      card.classList.add(state);
+      if (state === "running") card.querySelector(".bar").style.width = "2%";
+      if (state === "done") card.querySelector(".bar").style.width = "100%";
+      if (state === "failed") card.querySelector(".bar").style.width = "100%";
+      appendLog(`${event.type}: ${id}`);
+      markGraphNode(id, state, event.status || state);
+      refreshAgentDetail(id);
+    }
+
+    function markGraphNode(id, state, status) {
+      const row = graphNodes.get(id);
+      if (!row) return;
+      row.classList.remove("running", "done", "failed");
+      row.classList.add(state);
+      row.querySelector(".graph-status").textContent = status || state;
+    }
+
+    function appendNodeOutput(event) {
+      const card = nodes.get(event.node_id);
+      if (!card) return;
+      card.querySelector(".node-output").textContent += `${event.chunk}
+
+`;
+      card.querySelector(".node-output").scrollTop = card.querySelector(".node-output").scrollHeight;
+      card.querySelector(".bar").style.width = `${Math.round(event.progress * 100)}%`;
+      const model = nodeModels.get(event.node_id);
+      if (model) {
+        model.output += `${event.chunk}
+
+`;
+        if (event.thread_id) model.thread_id = event.thread_id;
+        model.progress = event.progress;
+      }
+      appendLog(`${event.node_id}> ${event.chunk}`);
+      refreshAgentDetail(event.node_id);
+    }
+
+    function updateNodeModel(id, patch) {
+      const model = nodeModels.get(id);
+      if (!model) return;
+      Object.assign(model, patch);
+    }
+
+    function recordArtifact(event) {
+      const model = nodeModels.get(event.node_id);
+      if (!model) return;
+      model.artifacts.push({
+        type: event.type,
+        path: event.path || "",
+        message: event.message || ""
+      });
+      refreshAgentDetail(event.node_id);
+    }
+
+    function openAgentDetail(nodeId) {
+      const model = nodeModels.get(nodeId);
+      if (!model) return;
+      detailState.nodeId = nodeId;
+      byId("agent-detail").classList.add("open");
+      byId("agent-detail").setAttribute("aria-hidden", "false");
+      byId("detail-backdrop").classList.add("open");
+      refreshAgentDetail(nodeId, true);
+    }
+
+    function closeAgentDetail() {
+      detailState.nodeId = null;
+      byId("agent-detail").classList.remove("open");
+      byId("agent-detail").setAttribute("aria-hidden", "true");
+      byId("detail-backdrop").classList.remove("open");
+    }
+
+    function refreshAgentDetail(nodeId, force = false) {
+      if (detailState.nodeId !== nodeId && !force) return;
+      const model = nodeModels.get(nodeId);
+      if (!model) return;
+      byId("detail-title").textContent = model.label || model.id;
+      byId("detail-status").textContent = model.status || "waiting";
+      const artifacts = (model.artifacts || [])
+        .map(item => `${item.type}: ${item.path || item.message}`)
+        .join("
+") || "none";
+      byId("detail-meta").innerHTML = `
+        <dt>Node</dt><dd>${escapeHtml(model.id)}</dd>
+        <dt>Role</dt><dd>${escapeHtml(model.role || "")}</dd>
+        <dt>Phase</dt><dd>${escapeHtml(model.phase || "")}</dd>
+        <dt>Thread</dt><dd>${escapeHtml(model.thread_id || "not assigned")}</dd>
+        <dt>Progress</dt><dd>${Math.round((model.progress || 0) * 100)}%</dd>
+        <dt>Artifacts</dt><dd>${escapeHtml(artifacts)}</dd>
+      `;
+      const output = model.output || "No output yet.";
+      const detailOutput = byId("detail-output");
+      const atBottom = detailOutput.scrollTop + detailOutput.clientHeight >= detailOutput.scrollHeight - 24;
+      detailOutput.textContent = output;
+      detailOutput.style.fontSize = `${Math.round(15 * detailState.scale)}px`;
+      if (atBottom || force) detailOutput.scrollTop = detailOutput.scrollHeight;
+    }
+
+    function zoomAgentDetail(factor) {
+      detailState.scale = Math.max(0.7, Math.min(2.4, detailState.scale * factor));
+      byId("detail-zoom-reset").textContent = `${Math.round(detailState.scale * 100)}%`;
+      if (detailState.nodeId) refreshAgentDetail(detailState.nodeId, true);
+    }
+
+    function resetAgentDetailZoom() {
+      detailState.scale = 1;
+      byId("detail-zoom-reset").textContent = "100%";
+      if (detailState.nodeId) refreshAgentDetail(detailState.nodeId, true);
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function appendTimeline(event) {
+      const label = event.node_id || event.group || event.status || "";
+      byId("timeline").textContent += `${event.type} ${label}
+`;
+    }
+
+    function appendLog(line) {
+      const log = byId("event-log");
+      log.textContent += `${line}
+`;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    async function pollActiveEvents() {
+      if (source) return;
+      const response = await fetch("/active-events", { cache: "no-store" });
+      const payload = await response.json();
+      const events = payload.events || [];
+      if (!events.length) return;
+      const runStarted = events.find(event => event.type === "run_started");
+      const runId = runStarted && runStarted.run_id ? runStarted.run_id : "active";
+      if (runId !== activeRunId) {
+        activeRunId = runId;
+        activeEventCount = 0;
+        nodes.clear();
+        nodeModels.clear();
+        graphNodes.clear();
+        closeAgentDetail();
+        byId("node-grid").innerHTML = "";
+        byId("flow-graph").innerHTML = "";
+        byId("timeline").textContent = "";
+        byId("event-log").textContent = "";
+      }
+      for (const event of events.slice(activeEventCount)) applyEvent(event);
+      activeEventCount = events.length;
+    }
+
+    byId("latest").addEventListener("click", () => loadLatest().catch(error => {
+      byId("summary").textContent = "latest failed";
+      appendLog(`latest error: ${error.message}`);
+    }));
+    byId("restart").addEventListener("click", startRun);
+    byId("detail-close").addEventListener("click", closeAgentDetail);
+    byId("detail-backdrop").addEventListener("click", closeAgentDetail);
+    byId("detail-zoom-in").addEventListener("click", () => zoomAgentDetail(1.15));
+    byId("detail-zoom-out").addEventListener("click", () => zoomAgentDetail(0.87));
+    byId("detail-zoom-reset").addEventListener("click", resetAgentDetailZoom);
+    window.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeAgentDetail();
+    });
+    byId("mode").addEventListener("change", () => {
+      byId("summary").textContent = "waiting";
+      byId("status-text").textContent = "idle";
+      byId("status-dot").className = "status-dot";
+    });
+    loadLatest().catch(() => {
+      byId("summary").textContent = "waiting";
+      byId("status-text").textContent = "idle";
+      byId("status-dot").className = "status-dot";
+    });
+    pollTimer = setInterval(() => pollActiveEvents().catch(() => {}), 1000);
+  </script>
+</body>
+</html>
+

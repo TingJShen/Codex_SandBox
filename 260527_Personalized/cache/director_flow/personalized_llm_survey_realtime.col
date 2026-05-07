@@ -1,0 +1,23 @@
+program "personalized-llm-survey-realtime" {
+  cap research level=L1 tools=[web,files] network=public_read write=workspace max_agents=8 max_time=8h max_cost=medium rollback=true
+
+  ROLE coordinator register=R1 kind=director
+  ROLE arxiv_retriever register=R3 kind=executor
+  ROLE openreview_retriever register=R3 kind=executor
+  ROLE dedup_scorer register=R4 kind=executor
+  ROLE taxonomy_director register=R4 kind=director
+  ROLE core_summarizer register=R4 kind=executor
+  ROLE extended_summarizer register=R4 kind=executor
+  ROLE verifier register=R6 kind=verifier
+  ROLE final_writer register=R7 kind=director
+
+  ARTIFACT Scope type=markdown path="cache/director_flow/Coordinator_To_RetrievalDirectors_20260507_scope.md" schema=role_message
+  ARTIFACT ArxivReport type=markdown path="cache/director_flow/RetrievalDirectorArxiv_To_Coordinator_20260507_retrieval_report.md" schema=role_message
+  ARTIFACT OpenReviewReport type=markdown path="cache/director_flow/RetrievalDirectorOpenReview_To_Coordinator_20260507_retrieval_report.md" schema=role_message
+  ARTIFACT ScoringReport type=markdown path="cache/director_flow/DedupScoringDirector_To_Coordinator_20260507_scoring_report.md" schema=role_message
+  ARTIFACT TaxonomyReport type=markdown path="cache/director_flow/TaxonomyDirector_To_Coordinator_20260507_taxonomy.md" schema=role_message
+  ARTIFACT CoreSummaries type=markdown path="cache/director_flow/SummaryDirectorCore_To_Coordinator_20260507_core_summaries.md" schema=role_message
+  ARTIFACT ExtendedSummaries type=markdown path="cache/director_flow/SummaryDirectorExtended_To_Coordinator_20260507_extended_summaries.md" schema=role_message
+  ARTIFACT VerificationReport type=markdown path="cache/director_flow/VerificationDirector_To_Coordinator_20260507_verification_report.md" schema=verification_report
+  ARTIFACT FinalSurvey type=markdown path="personalized_llm_survey_zh.md" schema=role_message
+}

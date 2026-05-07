@@ -1,0 +1,43 @@
+# Core paper summaries
+
+- From: SummaryDirector-Core
+- To: Coordinator
+- Subject: Core paper summaries
+- Status: passed
+- LoopType: FullLoop
+- Supersedes: none
+- RequiresAction: VerificationDirector should sample-check core summaries.
+- ArtifactLinks:
+- D:\Codex_Sandbox\260527_Personalized\cache\processed\core_paper_summaries.jsonl
+- DoneCriteria: Wrote 80 core Chinese summary records.
+
+- 1. PREMIUM: LLM Personalization with Individual-level Preference Feedback (2024-09-26)
+- 2. Democratizing Large Language Models via Personalized Parameter-Efficient Fine-tuning (2024-01-01)
+- 3. Reflective Personalization Optimization: A Post-hoc Rewriting Framework for Black-Box Large Language Models (2025-11-01)
+- 4. Personalized Pieces: Efficient Personalized Large Language Models through Collaborative Efforts (2024-01-01)
+- 5. MTA: A Merge-then-Adapt Framework for Personalized Large Language Model (2025-11-01)
+- 6. Instant Personalized Large Language Model Adaptation via Hypernetwork (2025-10-01)
+- 7. HYDRA: Model Factorization Framework for Black-Box LLM Personalization (2024-05-15)
+- 8. A Survey of Personalized Large Language Models: Progress and Future Directions (2025-02-01)
+- 9. LaMP: When Large Language Models Meet Personalization (2024-01-01)
+- 10. LaMP-Cap: Personalized Figure Caption Generation With Multimodal Figure Profiles (2025-06-01)
+- 11. LaMP-QA: A Benchmark for Personalized Long-form Question Answering (2025-06-01)
+- 12. ClusterRAG: Cluster-Based Collaborative Filtering for Personalized Retrieval-Augmented Generation (2026-01-05)
+- 13. ALIGN: Prompt-based Attribute Alignment for Reliable, Responsible, and Personalized LLM-based Decision-Making (2025-05-29)
+- 14. Large Language Models Empowered Personalized Web Agents (2024-09-30)
+- 15. DeepTutor: Towards Agentic Personalized Tutoring (2026-04-10)
+- 16. User Preference Modeling for Conversational LLM Agents: Weak Rewards from Retrieval-Augmented Interaction (2026-03-21)
+- 17. When Personalization Legitimizes Risks: Uncovering Safety Vulnerabilities in Personalized Dialogue Agents (2026-01-06)
+- 18. Adaptive Friend Agent: Personalized Multi-User Memory for Conversational AI (2025-09-19)
+- 19. T-POP: Test-Time Personalization with Online Preference Feedback (2025-09-19)
+- 20. PersonaAgent: When Large Language Model Agents Meet Personalization at Test Time (2025-09-02)
+- 21. Adaptive Preference Arithmetic: A Personalized Agent with Adaptive Preference Arithmetic for Dynamic Preference Modeling (2025-05-08)
+- 22. A Survey of Personalization: From RAG to Agent (2025-04-01)
+- 23. Personalized Large Language Model Assistant with Evolving Conditional Memory (2025-01-01)
+- 24. User Behavior Simulation with Large Language Model-based Agents (2024-12-20)
+- 25. PERSA: Reinforcement Learning for Professor-Style Personalized Feedback with LLMs (2026-05-01)
+- 26. AFA: Identity-Aware Memory for Preventing Persona Confusion in Multi-User Dialogue (2026-04-27)
+- 27. Personalized Benchmarking: Evaluating LLMs by Individual Preferences (2026-04-21)
+- 28. Latent Preference Modeling for Cross-Session Personalized Tool Calling (2026-04-20)
+- 29. SAGER: Self-Evolving User Policy Skills for Recommendation Agent (2026-04-16)
+- 30. GAAMA: Graph Augmented Associative Memory for Agents (2026-03-29)

@@ -1,0 +1,165 @@
+{
+  "run_id": "PERSONALIZED_LLM_SURVEY_20260507_164850",
+  "status": "passed",
+  "final_path": "D:\\Codex_Sandbox\\260527_Personalized\\personalized_llm_survey_zh.md",
+  "arxiv": {
+    "query_stats": [
+      {
+        "query": "cat:cs.CL AND submittedDate:[202505070000 TO 202605072359]",
+        "status": "passed",
+        "fetched": 3600,
+        "total": 25262
+      },
+      {
+        "query": "cat:cs.AI AND submittedDate:[202505070000 TO 202605072359]",
+        "status": "passed",
+        "fetched": 900,
+        "total": 50913
+      },
+      {
+        "query": "cat:cs.IR AND submittedDate:[202505070000 TO 202605072359]",
+        "status": "passed",
+        "fetched": 700,
+        "total": 4579
+      },
+      {
+        "query": "cat:cs.LG AND submittedDate:[202505070000 TO 202605072359]",
+        "status": "passed",
+        "fetched": 900,
+        "total": 48757
+      },
+      {
+        "query": "all:personalized AND submittedDate:[202505070000 TO 202605072359]",
+        "status": "passed",
+        "fetched": 400,
+        "total": 6293
+      },
+      {
+        "query": "all:personalization AND submittedDate:[202505070000 TO 202605072359]",
+        "status": "passed",
+        "fetched": 400,
+        "total": 6304
+      }
+    ],
+    "raw_path": "D:\\Codex_Sandbox\\260527_Personalized\\cache\\raw\\arxiv_raw_records.jsonl",
+    "csv_path": "D:\\Codex_Sandbox\\260527_Personalized\\cache\\processed\\arxiv_candidates.csv"
+  },
+  "openreview": {
+    "stats": [
+      {
+        "term": "personalized LLM",
+        "notes": 80
+      },
+      {
+        "term": "LLM personalization",
+        "notes": 80
+      },
+      {
+        "term": "personalized large language model",
+        "notes": 80
+      },
+      {
+        "term": "user profile large language model",
+        "notes": 80
+      },
+      {
+        "term": "personalized agent",
+        "notes": 80
+      },
+      {
+        "term": "personalized RAG",
+        "notes": 80
+      },
+      {
+        "term": "LLM recommendation",
+        "notes": 80
+      },
+      {
+        "term": "LLM recommender",
+        "notes": 80
+      },
+      {
+        "term": "memory LLM user",
+        "notes": 80
+      },
+      {
+        "term": "parameter efficient fine tuning personalization",
+        "notes": 80
+      },
+      {
+        "term": "federated LLM personalization",
+        "notes": 80
+      },
+      {
+        "term": "personalized alignment LLM",
+        "notes": 80
+      },
+      {
+        "term": "preference personalization LLM",
+        "notes": 80
+      },
+      {
+        "term": "LaMP large language model personalization",
+        "notes": 80
+      },
+      {
+        "term": "OPPU personalized parameter efficient fine tuning",
+        "notes": 80
+      }
+    ],
+    "raw_path": "D:\\Codex_Sandbox\\260527_Personalized\\cache\\raw\\openreview_raw_records.jsonl",
+    "csv_path": "D:\\Codex_Sandbox\\260527_Personalized\\cache\\processed\\openreview_candidates.csv"
+  },
+  "verification": {
+    "status": "passed",
+    "raw_records_total": 7199,
+    "arxiv_raw_records": 6900,
+    "openreview_paper_like_records": 299,
+    "curated_papers_total": 280,
+    "summaries_total": 280,
+    "missing_fields": [],
+    "sample_links": [
+      "https://openreview.net/forum?id=N1pya6kv3g",
+      "https://openreview.net/forum?id=5Eh8HnBMv9",
+      "https://openreview.net/forum?id=vKuQ79FJR4",
+      "https://openreview.net/forum?id=KOhM6EosCT",
+      "https://openreview.net/forum?id=6l1VCa4evM",
+      "https://openreview.net/forum?id=Fpvk9FDQC2",
+      "https://openreview.net/forum?id=CKgNgKmHYp",
+      "https://openreview.net/forum?id=j0B8ZZfJip",
+      "https://openreview.net/forum?id=LJvGj5JlSd",
+      "https://openreview.net/forum?id=jofHQ3wXtW",
+      "https://openreview.net/forum?id=cLp6K54IIT",
+      "https://openreview.net/forum?id=ECk4OIkgUE",
+      "https://openreview.net/forum?id=iQptQH12zD",
+      "https://openreview.net/forum?id=kAzqfqsCC5",
+      "https://arxiv.org/abs/2604.26962v1",
+      "https://arxiv.org/abs/2603.20939v1",
+      "https://openreview.net/forum?id=EODV7WBADQ",
+      "https://openreview.net/forum?id=wKTwm7ZzDK",
+      "https://openreview.net/forum?id=wOaXd83Yio",
+      "https://openreview.net/forum?id=KkT3f2N4oF",
+      "https://openreview.net/forum?id=fgCOkyJG3f",
+      "https://openreview.net/forum?id=vKLalvhcjz",
+      "https://openreview.net/forum?id=gkG8JOOUF4",
+      "https://openreview.net/forum?id=i7qbfjGQ2B",
+      "https://openreview.net/forum?id=PrJUwnwUM2",
+      "https://openreview.net/forum?id=tJvZDb5GsT",
+      "https://arxiv.org/abs/2605.01123v1",
+      "https://arxiv.org/abs/2604.25022v1",
+      "https://arxiv.org/abs/2604.18943v1",
+      "https://arxiv.org/abs/2604.17886v1"
+    ],
+    "direction_counts": {
+      "Benchmark and Evaluation": 204,
+      "Personalized PEFT and Adaptation": 19,
+      "LLM-based Recommendation and Ranking": 18,
+      "Personalized Alignment and Preference Learning": 15,
+      "Personalized Agents and Assistants": 9,
+      "Privacy, Federated, and On-device Personalization": 8,
+      "Profile Prompting and Personalized RAG": 5,
+      "Memory and Dynamic User Modeling": 2
+    },
+    "conclusion": "scan and summary completeness gates passed"
+  }
+}

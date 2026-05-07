@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personalized LLM Survey Browser</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="survey-nav" aria-label="Survey navigation">
+        <div class="nav-brand">
+          <span class="brand-mark">PL</span>
+          <div>
+            <h2>Survey Browser</h2>
+            <p id="nav-subtitle"></p>
+          </div>
+        </div>
+
+        <div class="language-toggle" role="group" aria-label="Language">
+          <button class="seg active" data-lang="zh" type="button">中文</button>
+          <button class="seg" data-lang="en" type="button">EN</button>
+        </div>
+
+        <ul id="section-nav"></ul>
+
+        <div class="nav-metrics">
+          <div><strong id="metric-raw">7199</strong><span>raw records</span></div>
+          <div><strong id="metric-papers">280</strong><span>curated papers</span></div>
+        </div>
+      </aside>
+
+      <main class="survey-content">
+        <header class="hero" id="top">
+          <p class="eyebrow">Personalized LLM Survey</p>
+          <h1 id="hero-title"></h1>
+          <p id="hero-lead"></p>
+          <div class="meta" id="hero-meta"></div>
+        </header>
+
+        <article class="manuscript" id="manuscript"></article>
+      </main>
+
+      <aside class="detail-panel" aria-label="Paper and agent details">
+        <div class="panel-tabs" role="group" aria-label="Detail panel">
+          <button class="panel-tab active" data-panel="paper" type="button">Paper</button>
+          <button class="panel-tab" data-panel="agent" type="button">Agent</button>
+        </div>
+        <div class="panel-body active" id="paper-panel">
+          <p class="empty">Select an inline citation or reference card.</p>
+        </div>
+        <div class="panel-body" id="agent-panel">
+          <p class="empty">Select an agent node.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="citation-tooltip" id="citation-tooltip" hidden></div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

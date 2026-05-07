@@ -1,0 +1,73 @@
+# Extended paper summaries
+
+- From: SummaryDirector-Extended
+- To: Coordinator
+- Subject: Extended paper summaries
+- Status: passed
+- LoopType: FullLoop
+- Supersedes: none
+- RequiresAction: VerificationDirector should sample-check extended summaries.
+- ArtifactLinks:
+- D:\Codex_Sandbox\260527_Personalized\cache\processed\extended_paper_summaries.jsonl
+- DoneCriteria: Wrote 200 extended Chinese summary records.
+
+- 81. MAPS: Motivation-Aware Personalized Search via LLM-Driven Consultation Alignment (2025-03-01)
+- 82. User Profile with Large Language Models: Construction, Updating, and Benchmarking (2025-02-01)
+- 83. Direct Preference Optimization for LLM-Enhanced Recommendation Systems (2025-01-01)
+- 84. PRIME: Large Language Model Personalization with Cognitive Dual-Memory and Personalized Thought Process (2025-01-01)
+- 85. Personalized Language Modeling from Personalized Human Feedback (2024-10-05)
+- 86. PAD: Personalized Alignment of LLMs at Decoding-time (2024-09-24)
+- 87. Learning from Personal Preferences (2024-09-08)
+- 88. Leveraging LLM Reasoning Enhances Personalized Recommender Systems (2024-01-01)
+- 89. MIMIR: A Streamlined Platform for Personalized Agent Tuning in Domain Expertise (2024-01-01)
+- 90. PAD: Personalized Alignment at Decoding-Time (2024-01-01)
+- 91. Prompt Tuning as User Inherent Profile Inference Machine (2024-01-01)
+- 92. UniMS-RAG: A Unified Multi-source Retrieval-Augmented Generation for Personalized Dialogue Systems (2024-01-01)
+- 93. ScrapMem: A Bio-inspired Framework for On-device Personalized Agent Memory via Optical Forgetting (2026-05-05)
+- 94. RMGAP: Benchmarking the Generalization of Reward Models across Diverse Preferences (2026-05-03)
+- 95. MemORAI: Memory Organization and Retrieval via Adaptive Graph Intelligence for LLM Conversational Agents (2026-05-02)
+- 96. Similar Users-Augmented Interest Network (2026-04-26)
+- 97. Separable Expert Architecture: Toward Privacy-Preserving LLM Personalization via Composable Adapters and Deletable User Proxies (2026-04-23)
+- 98. IceBreaker for Conversational Agents: Breaking the First-Message Barrier with Personalized Starters (2026-04-20)
+- 99. Enhancing Zero-shot Personalized Image Aesthetics Assessment with Profile-aware Multimodal LLM (2026-04-19)
+- 100. HopRank: Self-Supervised LLM Preference-Tuning on Graphs for Few-Shot Node Classification (2026-04-19)
+- 101. Agentic AI for Education: A Unified Multi-Agent Framework for Personalized Learning and Institutional Intelligence (2026-04-17)
+- 102. MemEvoBench: Benchmarking Memory MisEvolution in LLM Agents (2026-04-17)
+- 103. CPGRec+: A Balance-oriented Framework for Personalized Video Game Recommendations (2026-04-16)
+- 104. M2HRI: An LLM-Driven Multimodal Multi-Agent Framework for Personalized Human-Robot Interaction (2026-04-13)
+- 105. Memory as Metabolism: A Design for Companion Knowledge Systems (2026-04-13)
+- 106. Self-Evolving LLM Memory Extraction Across Heterogeneous Tasks (2026-04-13)
+- 107. ReRec: Reasoning-Augmented LLM-based Recommendation Assistant via Reinforcement Fine-tuning (2026-04-09)
+- 108. HingeMem: Boundary Guided Long-Term Memory with Query Adaptive Retrieval for Scalable Dialogues (2026-04-08)
+- 109. Personalized RewardBench: Evaluating Reward Models with Human Aligned Personalization (2026-04-08)
+- 110. High-Stakes Personalization: Rethinking LLM Customization for Individual Investor Decision-Making (2026-04-05)
+- 111. Many Preferences, Few Policies: Towards Scalable Language Model Personalization (2026-04-05)
+- 112. VehicleMemBench: An Executable Benchmark for Multi-User Long-Term Memory in In-Vehicle Agents (2026-03-25)
+- 113. HUOZIIME: An On-Device LLM-enhanced Input Method for Deep Personalization (2026-03-23)
+- 114. FedPDPO: Federated Personalized Direct Preference Optimization for Large Language Model Alignment (2026-03-20)
+- 115. PEARL: Personalized Streaming Video Understanding Model (2026-03-20)
+- 116. Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory (2026-03-17)
+- 117. Diagnostic-Guided Dynamic Profile Optimization for LLM-based User Simulators in Sequential Recommendation (2026-01-01)
+- 118. ProEx: A Unified Framework Leveraging Large Language Model with Profile Extrapolation for Recommendation (2025-12-01)
+- 119. Personalization Toolkit: Training Free Personalization of Large Vision Language Models (2025-10-09)
+- 120. ColorAgent: Building A Robust, Personalized, and Interactive OS Agent (2025-10-01)
+- 121. SecFPP : Secure Federated Prompt Personalization for Vision Language Models (2025-09-20)
+- 122. Collaborative Memory: Multi-User Memory Sharing in LLM Agents with Dynamic Access Control (2025-09-19)
+- 123. RPM: Reasoning-Level Personalization for Black-Box Large Language Models (2025-09-19)
+- 124. Customer-R1: personalized simulation of Human Behaviors via RL-based LLM Agent in Online Shopping (2025-09-02)
+- 125. PrefDisco: Evaluating Proactive Personalization through Interactive Preference Discovery (2025-09-02)
+- 126. A Personalized Conversational Benchmark: Towards Simulating Personalized Conversations (2025-08-30)
+- 127. User-Assistant Bias in LLMs (2025-08-20)
+- 128. A Survey on LLM-powered Agents for Recommender Systems (2025-02-01)
+- 129. Enhancing LLM-Based Recommendations Through Personalized Reasoning (2025-02-01)
+- 130. Personalization of Large Language Models: A Survey (2024-12-01)
+- 131. Graph Meets LLM for Review Personalization based on User Votes (2024-10-07)
+- 132. Aligning to Thousands of Preferences via System Message Generalization (2024-09-11)
+- 133. Mallows-DPO: Fine-Tune Your LLM with Preference Dispersions (2024-09-06)
+- 134. When large language models meet personalization: perspectives of challenges and opportunities (2024-07-01)
+- 135. Harmonizing Generalization and Personalization in Federated Prompt Learning (2024-01-22)
+- 136. SmartAgent: Chain-of-User-Thought for Embodied Personalized Agent in Cyber World (2024-01-01)
+- 137. Understanding the Role of User Profile in the Personalization of Large Language Models (2024-01-01)
+- 138. User-Specific Dialogue Generation with User Profile-Aware Pre-Training Model and Parameter-Efficient Fine-Tuning (2024-01-01)
+- 139. Towards Self-Referential Analytic Assessment: A Profile-Based Approach to L2 Writing Evaluation with LLMs (2026-05-05)
+- 140. MEMAUDIT: An Exact Package-Oracle Evaluation Protocol for Budgeted Long-Term LLM Memory Writing (2026-05-04)
