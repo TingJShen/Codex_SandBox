@@ -16,6 +16,9 @@ Generated for the GitHub archive directory:
 | `CURRENT_PROGRESS_20260507.md` | `2146` | Last successful live progress snapshot. |
 | `RESULTS_SUMMARY.md` | `3948` | Compact result summary. |
 | `REMOTE_PATHS_AND_RESUME.md` | `6499` | Remote paths, monitor commands, resume commands. |
+| `code/README.md` | `dynamic` | Code archive overview and V13 snapshot provenance. |
+| `code/v13/CODE_MANIFEST.md` | `dynamic` | File list, overlay patch notes, and excluded artifact policy. |
+| `code/v13/` | `432263` | Lightweight V13 source-code snapshot, 25 files, no large/generated artifacts. |
 | `training/README.md` | `dynamic` | V13 training archive index. |
 | `training/V13_TRAINING_WORKFLOW_20260507.md` | `dynamic` | V13 training workflow, environment, launch parameters, and operational rules. |
 | `training/V13_TRAINING_RESULTS_20260507.md` | `dynamic` | Attempt-by-attempt V13 training status and failure analysis. |

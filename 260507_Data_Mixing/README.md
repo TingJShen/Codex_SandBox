@@ -12,6 +12,7 @@ It is intentionally lightweight: it keeps procedures, manifests, scripts, result
 | `RESULTS_SUMMARY.md` | Compact result summary for math, code, and Arena-Hard. |
 | `CURRENT_PROGRESS_20260507.md` | Last successful live progress snapshot and pending work. |
 | `REMOTE_PATHS_AND_RESUME.md` | Remote paths, resume commands, and monitoring commands. |
+| `code/` | Lightweight V13 source-code snapshot with large/generated files excluded. |
 | `training/` | V13 training workflow, attempt table, live GPU0/GPU7 watcher state, and OOM analysis. |
 | `results/eval_result_log_1_5B.md` | Full local result log copied from `D:\Codex_Sandbox\Huawei_Hard\eval_result_log_1_5B.md`. |
 | `scripts/` | Arena-Hard answer/judge drivers and summary utilities used for the 2026-05-07 priority sweep. |

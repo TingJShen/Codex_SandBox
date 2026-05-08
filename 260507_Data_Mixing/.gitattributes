@@ -3,5 +3,7 @@
 *.sh text eol=lf
 *.py text eol=lf
 *.tsv text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
 *.log text eol=lf
 *.tiktoken binary
