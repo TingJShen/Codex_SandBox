@@ -1,0 +1,5 @@
+Icon: Bootstrap gpu card
+Source: IconArchive, Bootstrap Icons by Bootstrap Team
+License: MIT (Open Source), commercial usage allowed
+Page: https://www.iconarchive.com/show/bootstrap-icons-by-bootstrap/Bootstrap-gpu-card-icon.html
+Downloaded file: gpu-card.ico

@@ -1,0 +1,987 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>配方生产线链路图 | Endfield / Assembly Line / DSP / Factorio</title>
+  <script src="./PipelineRecipeReportData.js" charset="utf-8"></script>
+  <style>
+    :root {
+      --ink: #211813;
+      --muted: #7a6d60;
+      --paper: #f6edd8;
+      --paper-2: #eadbc0;
+      --line: rgba(70, 50, 30, 0.22);
+      --coal: #29231c;
+      --raw: #4f7a4d;
+      --recipe: #b6732b;
+      --item: #347989;
+      --target: #7558a8;
+      --warn: #a74d3f;
+      --shadow: 0 18px 60px rgba(42, 31, 18, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "Georgia", serif;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255, 187, 103, 0.32), transparent 34rem),
+        radial-gradient(circle at 88% 10%, rgba(72, 125, 130, 0.22), transparent 34rem),
+        linear-gradient(135deg, #f8f1dd 0%, #dfceb0 100%);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 12px clamp(18px, 4vw, 48px);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 250, 237, 0.84);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(360px, 1.28fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .title-block {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid rgba(65, 46, 24, 0.22);
+      border-radius: 999px;
+      color: #67451e;
+      background: rgba(255, 255, 255, 0.40);
+      font-size: 12px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 9px 0 0;
+      max-width: 1180px;
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .lede {
+      max-width: 1040px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .summary-details {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .summary-details summary {
+      cursor: pointer;
+      color: #6b471f;
+      font-weight: 800;
+    }
+
+    .stats-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(240px, 1.25fr) minmax(180px, 0.65fr) auto auto;
+      gap: 10px;
+      margin-top: 0;
+      max-width: 1320px;
+      align-items: center;
+    }
+
+    input, select, button {
+      font: inherit;
+      border: 1px solid rgba(67, 49, 28, 0.22);
+      border-radius: 15px;
+      background: rgba(255, 252, 242, 0.78);
+      color: var(--ink);
+      padding: 11px 13px;
+      box-shadow: 0 6px 24px rgba(67, 49, 28, 0.06);
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button.active {
+      color: #fff8e7;
+      background: var(--coal);
+      border-color: var(--coal);
+    }
+
+    main {
+      padding: 22px clamp(18px, 4vw, 48px) 56px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 310px minmax(560px, 1fr) 360px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 249, 235, 0.76);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .panel-head h2, .panel-head h3 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .panel-head p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.42);
+      color: #5c4a36;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .recipe-list {
+      max-height: calc(100vh - 230px);
+      overflow: auto;
+      padding: 10px;
+    }
+
+    .recipe-card {
+      width: 100%;
+      display: block;
+      text-align: left;
+      margin: 0 0 8px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(67, 49, 28, 0.12);
+      background: rgba(255, 255, 255, 0.32);
+      box-shadow: none;
+    }
+
+    .recipe-card:hover, .recipe-card.selected {
+      background: rgba(184, 111, 39, 0.14);
+      border-color: rgba(184, 111, 39, 0.42);
+    }
+
+    .recipe-card b {
+      display: block;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    .recipe-card small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .graph-card {
+      min-height: calc(100vh - 220px);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .legend span::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      background: var(--item);
+    }
+
+    .legend .raw::before { background: var(--raw); }
+    .legend .recipe::before { background: var(--recipe); }
+    .legend .target::before { background: var(--target); }
+    .legend .warn::before { background: var(--warn); }
+
+    .graph-scroll {
+      position: relative;
+      height: calc(100vh - 318px);
+      min-height: 520px;
+      overflow: auto;
+      background:
+        linear-gradient(90deg, rgba(70, 50, 30, 0.055) 1px, transparent 1px),
+        linear-gradient(rgba(70, 50, 30, 0.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .graph-stage {
+      position: relative;
+      min-width: 1680px;
+      min-height: 680px;
+    }
+
+    .edges {
+      position: absolute;
+      inset: 0;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .edge {
+      fill: none;
+      stroke: rgba(80, 54, 31, 0.48);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+    }
+
+    .edge.target { stroke: rgba(117, 88, 168, 0.72); stroke-width: 3; }
+    .edge.downstream { stroke: rgba(52, 121, 137, 0.62); }
+
+    .node {
+      position: absolute;
+      width: 210px;
+      min-height: 72px;
+      padding: 11px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      color: #fff8e9;
+      box-shadow: 0 14px 32px rgba(39, 29, 20, 0.18), inset 0 0 0 1px rgba(255,255,255,0.14);
+      cursor: default;
+    }
+
+    .node.clickable { cursor: pointer; }
+    .node.clickable:hover { outline: 3px solid rgba(255, 255, 255, 0.52); }
+    .node.raw { background: linear-gradient(145deg, #5f8958, #355c3b); }
+    .node.item { background: linear-gradient(145deg, #3c8da0, #245867); }
+    .node.recipe { background: linear-gradient(145deg, #c88434, #75502b); }
+    .node.target { background: linear-gradient(145deg, #8a69bb, #544079); }
+    .node.warn { background: linear-gradient(145deg, #b75c4c, #73382f); }
+
+    .node b {
+      display: block;
+      font-size: 14px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .node em {
+      display: block;
+      margin-top: 7px;
+      color: rgba(255, 248, 233, 0.78);
+      font-style: normal;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .node .tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .detail {
+      position: sticky;
+      top: 176px;
+    }
+
+    .detail-body {
+      padding: 16px;
+      max-height: calc(100vh - 260px);
+      overflow: auto;
+    }
+
+    .section {
+      padding: 13px;
+      border: 1px solid rgba(67, 49, 28, 0.12);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.32);
+      margin-bottom: 12px;
+    }
+
+    .section h4 {
+      margin: 0 0 10px;
+      color: #5b4530;
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 9px;
+      background: rgba(67, 49, 28, 0.08);
+      border: 1px solid rgba(67, 49, 28, 0.10);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .chip.input { background: rgba(79, 122, 77, 0.13); }
+    .chip.output { background: rgba(52, 121, 137, 0.13); }
+    .chip.warn { background: rgba(167, 77, 63, 0.13); }
+
+    .mini-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .mini-link {
+      border: 1px solid rgba(67, 49, 28, 0.12);
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: rgba(255,255,255,0.30);
+      cursor: pointer;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .mini-link:hover {
+      background: rgba(184, 111, 39, 0.13);
+    }
+
+    .sources {
+      margin-top: 16px;
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .sources a {
+      color: #674016;
+      font-weight: 800;
+    }
+
+    .empty {
+      padding: 30px 16px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 1260px) {
+      .layout {
+        grid-template-columns: 280px minmax(520px, 1fr);
+      }
+      .detail {
+        grid-column: 1 / -1;
+        position: static;
+      }
+      .detail-body {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 860px) {
+      header { position: static; }
+      .header-row { grid-template-columns: 1fr; }
+      .toolbar, .layout { grid-template-columns: 1fr; }
+      .recipe-list, .graph-scroll { max-height: none; height: 560px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <div class="title-block">
+        <span class="eyebrow">Recipe Link Graph</span>
+        <h1>配方生产线链路图</h1>
+        <details class="summary-details">
+          <summary>说明 / 数据口径</summary>
+          <p class="lede">
+            搜索或选择一个产物，页面会展开它的上游原料、上游配方、当前配方、输出和下游用途。
+            大型游戏默认只画邻域图，避免全图变成无法阅读的线团。终末地同时显示“有生产链的配方”和“仅公开索引收录的 catalog-only 物品”。
+          </p>
+        </details>
+        <div class="stats-strip" id="statsStrip"></div>
+      </div>
+      <div class="toolbar">
+        <input id="search" placeholder="搜索全部游戏：Iron Ingot、Circuit、Origocrust、iron-plate..." />
+        <select id="category"></select>
+        <label class="pill"><input id="showHidden" type="checkbox" /> 显示 hidden / 回收配方</label>
+        <label class="pill">展开层数
+          <select id="depth">
+            <option value="1">1 层</option>
+            <option value="2">2 层</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <nav class="tabs" id="tabs"></nav>
+
+    <section class="layout">
+      <aside class="card">
+        <div class="panel-head">
+          <h2 id="gameTitle">配方索引</h2>
+          <p id="coverage"></p>
+        </div>
+        <div class="recipe-list" id="recipeList"></div>
+      </aside>
+
+      <article class="card graph-card">
+        <div class="panel-head">
+          <h2 id="graphTitle">生产链路图</h2>
+          <p id="graphHint">箭头表示“会被生产/消耗”的关系；点击图中的配方节点可以跳转到那条配方。</p>
+          <div class="legend">
+            <span class="raw">原料/无上游</span>
+            <span class="recipe">配方/机器</span>
+            <span>产物/中间件</span>
+            <span class="target">当前目标</span>
+            <span class="warn">折叠/缺数据</span>
+          </div>
+        </div>
+        <div class="graph-scroll" id="graphScroll">
+          <div class="graph-stage" id="graphStage"></div>
+        </div>
+      </article>
+
+      <aside class="card detail">
+        <div class="panel-head">
+          <h3 id="detailName">配方明细</h3>
+          <p id="detailMeta">选择左侧或图中的配方。</p>
+        </div>
+        <div class="detail-body" id="detailBody"></div>
+      </aside>
+    </section>
+
+    <section class="card sources" id="sources"></section>
+  </main>
+
+  <script>
+    const DATA = window.PIPELINE_RECIPE_DATA;
+    DATA.games.forEach((g) => {
+      g.rows.forEach((row) => {
+        if (!row.__gameId) {
+          row.__gameId = g.id;
+          row.__gameName = g.name;
+          row.__localId = row.id;
+          row.id = `${g.id}::${row.id}`;
+        }
+      });
+    });
+    const ALL_GAME = {
+      id: "__all",
+      name: "全部游戏",
+      coverage: "跨 Endfield / Assembly Line / DSP / Factorio 的全部配方与索引项。选择任意行后，链路图只在该游戏内部追踪上下游，避免跨游戏误连。",
+      get rows() {
+        return DATA.games.flatMap((g) => g.rows);
+      }
+    };
+    const state = {
+      gameId: "__all",
+      query: "",
+      category: "__all",
+      showHidden: false,
+      depth: 1,
+      selectedId: null
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+    }[c]));
+
+    function game() {
+      if (state.gameId === "__all") return ALL_GAME;
+      return DATA.games.find((g) => g.id === state.gameId) || DATA.games[0];
+    }
+
+    function realGameForRow(row) {
+      return DATA.games.find((g) => g.id === row?.__gameId) || DATA.games[0];
+    }
+
+    function visibleGames() {
+      return [ALL_GAME, ...DATA.games];
+    }
+
+    function isHidden(row) {
+      return String(row.note || "").toLowerCase().includes("hidden") ||
+        String(row.flags || "").toLowerCase().includes("hidden=true");
+    }
+
+    function itemBase(text) {
+      return String(text || "")
+        .replace(/\s+\[[^\]]+\]\s*$/g, "")
+        .replace(/\s+sell\s+.*$/i, "")
+        .replace(/\s+\d+(?:\.\d+)?x$/i, "")
+        .replace(/\s+x(?:[-0-9.]+|[0-9]+-[0-9]+).*$/i, "")
+        .replace(/\s+p=\S+.*$/i, "")
+        .trim();
+    }
+
+    function normalizeItem(text) {
+      return itemBase(text).toLowerCase();
+    }
+
+    function rowText(row) {
+      return [
+        row.name, row.id, row.category, row.time,
+        ...(row.inputs || []), ...(row.outputs || []),
+        row.flags, row.note
+      ].join(" ").toLowerCase();
+    }
+
+    function filteredRows() {
+      const q = state.query.trim().toLowerCase();
+      return game().rows.filter((row) => {
+        if (!state.showHidden && isHidden(row)) return false;
+        if (state.category !== "__all" && row.category !== state.category) return false;
+        if (q && !rowText(row).includes(q)) return false;
+        return true;
+      });
+    }
+
+    function getCache(g) {
+      if (g._cache) return g._cache;
+      const byId = new Map();
+      const outputToRows = new Map();
+      const inputToRows = new Map();
+
+      for (const row of g.rows) {
+        byId.set(row.id, row);
+        for (const output of row.outputs || []) {
+          const key = normalizeItem(output);
+          if (!key) continue;
+          if (!outputToRows.has(key)) outputToRows.set(key, []);
+          outputToRows.get(key).push(row);
+        }
+        for (const input of row.inputs || []) {
+          const key = normalizeItem(input);
+          if (!key) continue;
+          if (!inputToRows.has(key)) inputToRows.set(key, []);
+          inputToRows.get(key).push(row);
+        }
+      }
+
+      g._cache = { byId, outputToRows, inputToRows };
+      return g._cache;
+    }
+
+    function chips(items, kind = "") {
+      if (!items || !items.length) return '<span class="chip warn">无记录</span>';
+      return `<div class="chips">${items.map((x) => `<span class="chip ${kind}">${esc(x)}</span>`).join("")}</div>`;
+    }
+
+    function miniRows(rows) {
+      if (!rows.length) return '<span class="chip warn">当前表内没有找到</span>';
+      return `<div class="mini-list">${rows.map((r) => `
+        <button class="mini-link" data-jump="${esc(r.id)}"><b>${esc(r.name)}</b><br><span>${esc(r.category || "")}</span></button>
+      `).join("")}</div>`;
+    }
+
+    function renderTabs() {
+      $("tabs").innerHTML = visibleGames().map((g) =>
+        `<button class="${g.id === state.gameId ? "active" : ""}" data-game="${esc(g.id)}">${esc(g.name)} · ${g.rows.length}</button>`
+      ).join("");
+      $("tabs").querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          state.gameId = btn.dataset.game;
+          state.category = "__all";
+          state.selectedId = null;
+          $("search").value = "";
+          state.query = "";
+          renderAll();
+        });
+      });
+    }
+
+    function renderCategorySelect() {
+      const categories = [...new Set(game().rows.map((r) => r.category || "未分类"))].sort();
+      $("category").innerHTML = `<option value="__all">全部分类 / 设备</option>` +
+        categories.map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join("");
+      $("category").value = state.category;
+    }
+
+    function renderStatsStrip() {
+      $("statsStrip").innerHTML = visibleGames().map((g) => {
+        const catalogOnly = g.rows.filter((r) => String(r.note || "").includes("catalog-only")).length;
+        const hidden = g.rows.filter(isHidden).length;
+        const suffix = [
+          catalogOnly ? `catalog-only ${catalogOnly}` : "",
+          hidden ? `hidden ${hidden}` : ""
+        ].filter(Boolean).join(" · ");
+        return `<span class="pill">${esc(g.name)} ${g.rows.length}${suffix ? ` · ${esc(suffix)}` : ""}</span>`;
+      }).join("");
+    }
+
+    function renderRecipeList() {
+      const rows = filteredRows();
+      if (!state.selectedId || !rows.some((r) => r.id === state.selectedId)) {
+        state.selectedId = rows[0]?.id || game().rows.find((r) => state.showHidden || !isHidden(r))?.id || null;
+      }
+
+      $("gameTitle").textContent = `${game().name} · ${rows.length}/${game().rows.length}`;
+      $("coverage").textContent = game().coverage;
+      $("recipeList").innerHTML = rows.length ? rows.slice(0, 420).map((row) => `
+        <button class="recipe-card ${row.id === state.selectedId ? "selected" : ""}" data-row="${esc(row.id)}">
+          <b>${esc(row.name)}</b>
+          <small>${esc(row.__gameName || game().name)} · ${esc(row.category || "未分类")} · ${esc(row.time || "无耗时记录")}</small>
+        </button>
+      `).join("") : `<div class="empty">没有匹配的配方，换个关键词试试。</div>`;
+
+      if (rows.length > 420) {
+        $("recipeList").insertAdjacentHTML("beforeend", `<div class="empty">只显示前 420 条；继续输入关键词可以缩小范围。</div>`);
+      }
+
+      $("recipeList").querySelectorAll("[data-row]").forEach((btn) => {
+        btn.addEventListener("click", () => selectRecipe(btn.dataset.row));
+      });
+    }
+
+    function addNode(graph, id, label, type, lane, note, rowId = null) {
+      if (graph.nodeIds.has(id)) return graph.nodes.find((n) => n.id === id);
+      const node = { id, label, type, lane, note, rowId, order: graph.laneCounts[lane] || 0 };
+      graph.laneCounts[lane] = node.order + 1;
+      graph.nodeIds.add(id);
+      graph.nodes.push(node);
+      return node;
+    }
+
+    function addEdge(graph, from, to, kind = "") {
+      const id = `${from}->${to}`;
+      if (graph.edgeIds.has(id)) return;
+      graph.edgeIds.add(id);
+      graph.edges.push({ from, to, kind });
+    }
+
+    function limited(list, count) {
+      return list.slice(0, count);
+    }
+
+    function buildGraph(row, sourceGame) {
+      const cache = getCache(sourceGame);
+      const graph = { nodes: [], edges: [], nodeIds: new Set(), edgeIds: new Set(), laneCounts: {} };
+
+      const recipeId = `recipe:${row.id}`;
+      addNode(graph, recipeId, row.name, "target", 3, row.category || "Recipe", row.id);
+
+      for (const input of limited(row.inputs || [], 8)) {
+        const inputKey = normalizeItem(input);
+        const producers = (cache.outputToRows.get(inputKey) || []).filter((r) => r.id !== row.id);
+        const inputType = producers.length ? "item" : "raw";
+        const inputId = `input:${inputKey}`;
+        addNode(graph, inputId, itemBase(input) || input, inputType, 2, input);
+        addEdge(graph, inputId, recipeId, "target");
+
+        for (const producer of limited(producers, 3)) {
+          const pId = `producer:${producer.id}`;
+          addNode(graph, pId, producer.name, "recipe", 1, producer.category || "Recipe", producer.id);
+          addEdge(graph, pId, inputId);
+
+          if (state.depth >= 2) {
+            for (const raw of limited(producer.inputs || [], 3)) {
+              const rawId = `raw:${producer.id}:${normalizeItem(raw)}`;
+              addNode(graph, rawId, itemBase(raw) || raw, "raw", 0, raw);
+              addEdge(graph, rawId, pId);
+            }
+          }
+        }
+
+        if (producers.length > 3) {
+          const moreId = `more-producers:${inputKey}`;
+          addNode(graph, moreId, `+${producers.length - 3} 个上游配方`, "warn", 1, "已折叠");
+          addEdge(graph, moreId, inputId);
+        }
+      }
+
+      if ((row.inputs || []).length > 8) {
+        const moreId = `more-inputs:${row.id}`;
+        addNode(graph, moreId, `+${row.inputs.length - 8} 个输入`, "warn", 2, "已折叠");
+        addEdge(graph, moreId, recipeId, "target");
+      }
+
+      for (const output of limited(row.outputs || [], 8)) {
+        const outputKey = normalizeItem(output);
+        const outId = `output:${outputKey}`;
+        addNode(graph, outId, itemBase(output) || output, "item", 4, output);
+        addEdge(graph, recipeId, outId, "target");
+
+        const consumers = (cache.inputToRows.get(outputKey) || []).filter((r) => r.id !== row.id);
+        for (const consumer of limited(consumers, 5)) {
+          const cId = `consumer:${consumer.id}`;
+          addNode(graph, cId, consumer.name, "recipe", 5, consumer.category || "Recipe", consumer.id);
+          addEdge(graph, outId, cId, "downstream");
+
+          if (state.depth >= 2) {
+            for (const cOut of limited(consumer.outputs || [], 2)) {
+              const cOutId = `consumer-output:${consumer.id}:${normalizeItem(cOut)}`;
+              addNode(graph, cOutId, itemBase(cOut) || cOut, "item", 6, cOut);
+              addEdge(graph, cId, cOutId, "downstream");
+            }
+          }
+        }
+
+        if (consumers.length > 5) {
+          const moreId = `more-consumers:${outputKey}`;
+          addNode(graph, moreId, `+${consumers.length - 5} 个下游配方`, "warn", 5, "已折叠");
+          addEdge(graph, outId, moreId, "downstream");
+        }
+      }
+
+      if ((row.outputs || []).length > 8) {
+        const moreId = `more-outputs:${row.id}`;
+        addNode(graph, moreId, `+${row.outputs.length - 8} 个输出`, "warn", 4, "已折叠");
+        addEdge(graph, recipeId, moreId, "target");
+      }
+
+      return graph;
+    }
+
+    function routePath(a, b) {
+      const startX = a.x + a.w;
+      const startY = a.y + a.h / 2;
+      const endX = b.x;
+      const endY = b.y + b.h / 2;
+      const mid = Math.max(startX + 40, (startX + endX) / 2);
+      return `M ${startX} ${startY} C ${mid} ${startY}, ${mid} ${endY}, ${endX} ${endY}`;
+    }
+
+    function selectedRow() {
+      const rows = filteredRows();
+      const row = rows.find((r) => r.id === state.selectedId) || rows[0] || game().rows.find((r) => state.showHidden || !isHidden(r));
+      if (!row) return { row: null, sourceGame: game() };
+      return { row, sourceGame: realGameForRow(row) };
+    }
+
+    function renderGraph() {
+      const selected = selectedRow();
+      const row = selected.row;
+      const sourceGame = selected.sourceGame;
+      if (!row) {
+        $("graphStage").innerHTML = `<div class="empty">没有可画的配方。</div>`;
+        return;
+      }
+
+      const graph = buildGraph(row, sourceGame);
+      const laneX = [32, 272, 512, 752, 992, 1232, 1472];
+      const laneGap = 110;
+      const nodeW = 210;
+      const nodeH = 74;
+
+      for (const node of graph.nodes) {
+        node.x = laneX[node.lane] || 32;
+        node.y = 28 + node.order * laneGap;
+        node.w = nodeW;
+        node.h = nodeH;
+      }
+
+      const height = Math.max(620, Math.max(...graph.nodes.map((n) => n.y + n.h + 40)));
+      const width = Math.max(1680, Math.max(...graph.nodes.map((n) => n.x + n.w + 48)));
+      const nodeById = new Map(graph.nodes.map((n) => [n.id, n]));
+
+      $("graphTitle").textContent = `${row.name} 的上下游链路`;
+      $("graphHint").textContent = `${sourceGame.name} · ${row.category || "Recipe"} · 输入 ${(row.inputs || []).length} · 输出 ${(row.outputs || []).length}`;
+
+      const edgeSvg = `
+        <svg class="edges" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(80, 54, 31, 0.55)"></path>
+            </marker>
+          </defs>
+          ${graph.edges.map((edge) => {
+            const from = nodeById.get(edge.from);
+            const to = nodeById.get(edge.to);
+            if (!from || !to) return "";
+            return `<path class="edge ${esc(edge.kind)}" d="${routePath(from, to)}" marker-end="url(#arrow)"></path>`;
+          }).join("")}
+        </svg>`;
+
+      const nodeHtml = graph.nodes.map((node) => `
+        <div class="node ${esc(node.type)} ${node.rowId ? "clickable" : ""}" style="left:${node.x}px;top:${node.y}px;" ${node.rowId ? `data-node-row="${esc(node.rowId)}"` : ""}>
+          <b>${esc(node.label)}</b>
+          <em>${esc(node.note || "")}</em>
+          <span class="tag">${esc(node.type)}</span>
+        </div>
+      `).join("");
+
+      $("graphStage").style.width = `${width}px`;
+      $("graphStage").style.height = `${height}px`;
+      $("graphStage").innerHTML = edgeSvg + nodeHtml;
+      $("graphStage").querySelectorAll("[data-node-row]").forEach((node) => {
+        node.addEventListener("click", () => selectRecipe(node.dataset.nodeRow));
+      });
+    }
+
+    function relationRows(row, sourceGame) {
+      const cache = getCache(sourceGame);
+      const upstream = [];
+      const downstream = [];
+      for (const input of row.inputs || []) {
+        const producers = (cache.outputToRows.get(normalizeItem(input)) || []).filter((r) => r.id !== row.id);
+        upstream.push(...producers);
+      }
+      for (const output of row.outputs || []) {
+        const consumers = (cache.inputToRows.get(normalizeItem(output)) || []).filter((r) => r.id !== row.id);
+        downstream.push(...consumers);
+      }
+      const uniq = (rows) => [...new Map(rows.map((r) => [r.id, r])).values()];
+      return { upstream: uniq(upstream).slice(0, 16), downstream: uniq(downstream).slice(0, 16) };
+    }
+
+    function renderDetail() {
+      const selected = selectedRow();
+      const row = selected.row;
+      const sourceGame = selected.sourceGame;
+      if (!row) return;
+      const rel = relationRows(row, sourceGame);
+      $("detailName").textContent = row.name;
+      $("detailMeta").textContent = `${sourceGame.name} · ${row.category || "未分类"} · ${row.time || "无耗时记录"}`;
+      $("detailBody").innerHTML = `
+        <div class="section">
+          <h4>输入材料</h4>
+          ${chips(row.inputs, "input")}
+        </div>
+        <div class="section">
+          <h4>输出产物</h4>
+          ${chips(row.outputs, "output")}
+        </div>
+        <div class="section">
+          <h4>上游配方</h4>
+          ${miniRows(rel.upstream)}
+        </div>
+        <div class="section">
+          <h4>下游用途</h4>
+          ${miniRows(rel.downstream)}
+        </div>
+        <div class="section">
+          <h4>标记与来源</h4>
+          ${chips([row.flags, row.note, row.url ? "source page available" : "", row.sourceId].filter(Boolean), row.note ? "warn" : "")}
+        </div>
+      `;
+      $("detailBody").querySelectorAll("[data-jump]").forEach((btn) => {
+        btn.addEventListener("click", () => selectRecipe(btn.dataset.jump));
+      });
+    }
+
+    function renderSources() {
+      $("sources").innerHTML = `
+        <strong>数据源与口径</strong><br>
+        本页生成时间：${esc(DATA.generatedAt)}。链路图从同一份配方数据动态生成，不再手写概括链路。
+        ${DATA.sources.map((s) => `<br><a href="${esc(s.url)}">${esc(s.label)}</a>`).join("")}
+      `;
+    }
+
+    function selectRecipe(id) {
+      state.selectedId = id;
+      if (!filteredRows().some((r) => r.id === id)) {
+        state.query = "";
+        $("search").value = "";
+        state.category = "__all";
+        renderCategorySelect();
+      }
+      renderRecipeList();
+      renderGraph();
+      renderDetail();
+      const selected = $("recipeList").querySelector(".selected");
+      if (selected) selected.scrollIntoView({ block: "nearest" });
+    }
+
+    function renderAll() {
+      renderStatsStrip();
+      renderTabs();
+      renderCategorySelect();
+      renderRecipeList();
+      renderGraph();
+      renderDetail();
+      renderSources();
+    }
+
+    $("search").addEventListener("input", (e) => {
+      state.query = e.target.value;
+      state.selectedId = null;
+      renderRecipeList();
+      renderGraph();
+      renderDetail();
+    });
+
+    $("category").addEventListener("change", (e) => {
+      state.category = e.target.value;
+      state.selectedId = null;
+      renderRecipeList();
+      renderGraph();
+      renderDetail();
+    });
+
+    $("showHidden").addEventListener("change", (e) => {
+      state.showHidden = e.target.checked;
+      state.selectedId = null;
+      renderRecipeList();
+      renderGraph();
+      renderDetail();
+    });
+
+    $("depth").addEventListener("change", (e) => {
+      state.depth = Number(e.target.value);
+      renderGraph();
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
