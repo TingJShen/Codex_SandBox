@@ -1,0 +1,105 @@
+Host 5090_Lian
+    HostName server.starteam.wang
+    Port 2214
+    User tjshen
+    IdentityFile C:\Users\63405\.ssh\tjshen_private_key
+
+Host 5090_Hao
+    HostName server.starteam.wang
+    Port 2213
+    User tjshen
+    IdentityFile C:\Users\63405\.ssh\tjshen_private_key
+
+Host 8A100
+    HostName server.starteam.wang
+    Port 2212
+    User tjshen
+    IdentityFile C:\Users\63405\.ssh\tjshen_private_key
+
+Host 5A100
+    HostName server.starteam.wang
+    Port 2211
+    User tjshen
+    IdentityFile C:\Users\63405\.ssh\tjshen_private_key
+
+Host VlabBastion
+    HostName vlab.ustc.edu.cn
+    Port 22
+    User root
+    IdentityFile C:\Users\63405\.ssh\vlab-vm12410.pem
+
+Host LoginNode
+    HostName 114.214.215.159
+    Port 22
+    User hongchao
+    IdentityFile C:\Users\63405/.ssh/id_H100_260304
+    #ProxyJump VlabBastion
+#passwd: R0R:V5*Q-D>9ygw
+
+Host GPU_H100_tjshen
+  HostName 172.16.177.102
+  Port 60004
+  User root
+  IdentityFile  C:\Users\63405/.ssh/id_H100_260304
+  ProxyJump LoginNode
+#passwd: YoHvf8CF
+#source /opt/conda/bin/activate && conda env list
+Host GPU_H100_ywliang
+  HostName 172.16.177.102
+  Port 60002
+  User root
+  ProxyJump LoginNode
+  IdentityFile  C:\Users\63405/.ssh/id_H100_260306
+#passwd: oPzTmsVF
+
+Host GPU_H100_yanmiao
+  HostName 172.16.177.102
+  Port 60011
+  User root
+  IdentityFile  C:\Users\63405/.ssh/id_H100_260304
+  ProxyJump LoginNode
+# passwd：k3mf7ODe
+
+Host Hanhai_ywliang
+  HostName 211.86.151.113
+  Port 22
+  User ywliangsc
+  #IdentityFile  C:\Users\63405/.ssh/id_Hanhai
+# passwd：tHvOg[u9~q
+
+Host GPU1
+    HostName 172.16.177.1
+    Port 22
+    User hongchao
+    IdentityFile  C:\Users\63405/.ssh/id_H100_260306
+    ProxyJump LoginNode
+
+Host GPU2
+    HostName 172.16.177.2
+    Port 22
+    User hongchao
+    IdentityFile  C:\Users\63405/.ssh/id_H100_260306
+    ProxyJump LoginNode
+
+Host GPU3
+    HostName 172.16.177.3
+    Port 22
+    User hongchao
+    IdentityFile  C:\Users\63405/.ssh/id_H100_260306
+    ProxyJump LoginNode
+
+Host GPU4
+    HostName 172.16.177.4
+    Port 22
+    User hongchao
+    IdentityFile  C:\Users\63405/.ssh/id_H100_260306
+    ProxyJump LoginNode
+
+Host GPU5
+    HostName 172.16.177.5
+    Port 22
+    User hongchao
+    IdentityFile  C:\Users\63405/.ssh/id_H100_260306
+    ProxyJump LoginNode
+    #R0R:V5*Q-D>9ygw
+    
