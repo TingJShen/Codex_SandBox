@@ -19,6 +19,8 @@ One combined summary table. All models are listed together, grouped by `Family`,
 |  | `ArcherCodeR-V12-Qwen3-2B-8A100-step200` | `200` | `20.2083%` | `66.6667%` | `18.2813%` | `66.6667%` | `81.2%` | `20.75%` | `18.58%` | `5.88%` | `45.21%` | `15.07%` |
 |  | `ArcherCodeR-V12-Qwen3-2B-8A100-step300` | `300` | `18.7500%` | `76.6667%` | `16.4583%` | `63.3333%` | `76.6%` | `19.00%` | `31.94%` | `2.04%` | `52.98%` | `17.66%` |
 |  | `ArcherCodeR-V12-Qwen3-2B-8A100-step400` | `400` | `15.8854%` | `60.0000%` | `15.4687%` | `60.0000%` | `74.8%` | `22.00%` | `33.61%` | `0.23%` | `55.84%` | `18.61%` |
+| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
+|  | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 | V11 | `ArcherCodeR-V11-step80-merged` | `80` | `3.1771%` | `36.6667%` | `0.7813%` | `13.3333%` | `54.6%` | `10.75%` | `31.32%` | `2.94%` | `45.01%` | `15.00%` |
 |  | `ArcherCodeR-V11-step160-merged` | `160` | `3.4375%` | `26.6667%` | `0.9375%` | `20.0%` | `54.6%` | `11.50%` | `29.02%` | `2.49%` | `43.01%` | `14.34%` |
 |  | `ArcherCodeR-V11-step240-merged` | `240` | `3.2813%` | `26.6667%` | `0.8854%` | `20.0%` | `53.0%` | `13.50%` | `30.90%` | `2.71%` | `47.11%` | `15.70%` |
@@ -58,6 +60,8 @@ Record date: 2026-04-27. Initial source root: `/zhdd/home/tjshen/260415_ArcherA1
 | Qwen3-2B V12 | `ArcherCodeR-V12-Qwen3-2B-8A100-step200` | `200` | `20.2083%` | `66.6667%` | `18.2813%` | `66.6667%` | `81.2%` | `20.75%` | `18.58%` | `5.88%` | `45.21%` | `15.07%` |
 | Qwen3-2B V12 | `ArcherCodeR-V12-Qwen3-2B-8A100-step300` | `300` | `18.7500%` | `76.6667%` | `16.4583%` | `63.3333%` | `76.6%` | `19.00%` | `31.94%` | `2.04%` | `52.98%` | `17.66%` |
 | Qwen3-2B V12 | `ArcherCodeR-V12-Qwen3-2B-8A100-step400` | `400` | `15.8854%` | `60.0000%` | `15.4687%` | `60.0000%` | `74.8%` | `22.00%` | `33.61%` | `0.23%` | `55.84%` | `18.61%` |
+| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
+| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 
 Qwen3-2B AIME24 rerun uses the corrected shared-directory dataset `/zhdd/home/tjshen/260415_ArcherA100/eval_datasets_5090_Hao/aime24_eval`. Base, `8A100-step100`, `5090Lian-step100`, `8A100-step200`, `8A100-step300`, `8A100-step400`, and the three latest `5090Lian` step100 variants above are complete for AIME24/AIME25/math500/LCB as of the 2026-05-07 sweep.
 
@@ -471,3 +475,34 @@ The attempted API judge run with `gpt-4o-mini` on our 1.5B models stopped early:
 - `math500` only records `pass@1`, and the first-run result is treated as the official result.
 - `LCB-total` is the sum of the three LCB `pass@1` metrics, and `LCB-mean` is that total divided by 3. Compute both with a script/tool rather than mental arithmetic.
 - New confirmed results should be appended to the table above immediately after they are produced.
+
+## V13 Qwen3-2B GradSketch Results (2026-05-12)
+
+Record date: 2026-05-12. Training: `sample_taylor_v13` method with GradSketch on 5090_Lian (4×5090, GPU 1-4). Base model: `Qwen3-2B` (`/zhdd/home/tjshen/260415_ArcherA100/model_overlays/Qwen3-2B_with_generation_config`). FSDP checkpoints merged to HuggingFace format with VL-composite config.
+
+Evaluation server: 5090_Hao (GPU4, GPU5) for math500; 5090_Lian (GPU1, GPU2) for AIME25 32k retest. Environment: `llama2_vllm_copy` with `qwen35_flashattn_shim` overlay.
+
+**AIME25 evaluation note**: The initial AIME25 results (14.17%/12.03%) were obtained with `max_tokens=8192`, while the base model was evaluated with `max_tokens=32768`. Since AIME25 questions require long reasoning chains (avg ~19000 tokens for base model), the 8k truncation makes the comparison unfair. A retest with `max_tokens=32768` is in progress on 5090_Lian (GPU1/GPU2, `gpu_memory_utilization=0.55`, `max_num_seqs=4`). ETA: ~24-48h from 2026-05-12 06:30 UTC+8.
+
+vLLM parameters (math500 + AIME25 8k): `gpu_memory_utilization=0.55`, `max_num_seqs=32`, `enforce_eager=True`, `max_tokens=8192`.
+vLLM parameters (AIME25 32k retest): `gpu_memory_utilization=0.55`, `max_num_seqs=4`, `enforce_eager=True`, `max_tokens=32768`.
+
+| Record Date | Server | Model | Eval Target | Dataset | Metric | Value | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-05-12 | 5090_Hao GPU5 | V13-Qwen3-2B-GradSketch-step200 | `/zhdd/home/tjshen/260415_ArcherA100/v13/output_5090_Lian/ArcherCodeR-V13-Qwen3-2B-5090Lian/train_5090_v13_qwen3_2b_4gpu_1_2_3_4_gradsketch_guard_resume100_20260510_171144/global_step_200_merged` | math500 | `pass@1` | `75.6%` | Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/math500_pass1/V13-Qwen3-2B-GradSketch-step200/math500/average_accuracy.txt`. |
+| 2026-05-12 | 5090_Hao GPU5 | V13-Qwen3-2B-GradSketch-step200 | (same) | AIME25 | `avg@64` | `14.1667%` | **UNFAIR** (max_tokens=8192, base used 32768). 32k retest in progress. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/avg64_aime25/V13-Qwen3-2B-GradSketch-step200/aime25/average_accuracy.txt`. |
+| 2026-05-12 | 5090_Hao GPU4 | V13-Qwen3-2B-GradSketch-step300 | `/zhdd/home/tjshen/260415_ArcherA100/v13/output_5090_Lian/ArcherCodeR-V13-Qwen3-2B-5090Lian/train_5090_v13_qwen3_2b_4gpu_1_2_3_4_gradsketch_guard_resume100_20260510_171144/global_step_300_merged` | math500 | `pass@1` | `74.0%` | Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/math500_pass1/V13-Qwen3-2B-GradSketch-step300/math500/average_accuracy.txt`. |
+| 2026-05-12 | 5090_Hao GPU4 | V13-Qwen3-2B-GradSketch-step300 | (same) | AIME25 | `avg@64` | `12.0312%` | **UNFAIR** (max_tokens=8192, base used 32768). 32k retest in progress. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/avg64_aime25/V13-Qwen3-2B-GradSketch-step300/aime25/average_accuracy.txt`. |
+
+### V13 vs Base Comparison
+
+| Model | Step | AIME25 `avg@64` | math500 `pass@1` | vs Base AIME25 | vs Base math500 |
+| --- | --- | --- | --- | --- | --- |
+| `Qwen3-2B-base` | base | `18.8021%` | `76.4%` | — | — |
+| `V13-Qwen3-2B-GradSketch-step200` | 200 | `14.17%*` | `75.6%` | `-4.64*` | `-0.8` |
+| `V13-Qwen3-2B-GradSketch-step300` | 300 | `12.03%*` | `74.0%` | `-6.77*` | `-2.4` |
+| Best V12 Qwen3-2B (8A100-step100) | 100 | `20.6250%` | `80.4%` | `+1.82` | `+4.0` |
+
+`*` = AIME25 results obtained with max_tokens=8192 (unfair comparison; base used 32768). Retest with max_tokens=32768 in progress. math500 results are valid (short outputs, unaffected by token limit).
+
+Observation: math500 shows V13 step200 is only -0.8pp below base (75.6% vs 76.4%), a minor regression. Step300 drops further to -2.4pp (74.0%). The AIME25 numbers marked with `*` are unreliable due to output truncation — the base model averages ~19000 tokens per AIME question, so 8192 max_tokens severely limits reasoning depth. Fair AIME25 comparison pending 32k retest completion (ETA ~2026-05-13). AIME24, pass@64, and LCB evaluations are pending.
