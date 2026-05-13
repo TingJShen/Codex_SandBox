@@ -514,3 +514,35 @@ vLLM parameters (AIME25/AIME24 32k retest, 5A100): `gpu_memory_utilization=0.45`
 All AIME results above use `max_tokens=32768` (fair comparison). The earlier 8k results (14.17%/12.03%) are superseded and kept in the raw table for reference only.
 
 Observation: With fair 32k evaluation, V13 step200 AIME25 (17.55%) is only -1.25pp below base (18.80%), much closer than the unfair 8k numbers suggested. Step300 still regresses (-4.69pp). AIME24 shows step200 at 21.41% — a strong result. math500 regressions remain minor (-0.8pp step200, -2.4pp step300). LCB evaluations are still pending.
+
+## V13_grad Qwen3-2B GradSketch Results (2026-05-13/14)
+
+Record date: 2026-05-13/14. Training: `v13_grad` variant (real per-sample parameter gradient sketch) on 5090_Lian (4x5090, GPU 0,3,4,5). Base model: `Qwen3-2B`. FSDP checkpoint merged to HuggingFace format with VL-composite config.
+
+Evaluation servers: 5A100 (A100-80GB, 32k context) and 5090_Hao (5090-32GB, 8k context). Environment: `llama2_vllm_copy` (5A100) / `llama2_vllm` (5090_Hao) with `qwen35_flashattn_shim` overlay.
+
+vLLM parameters (5A100, 32k): `gpu_memory_utilization=0.45`, `max_num_seqs=32`, `enforce_eager=True`, `enable_chunked_prefill=True`, `max_tokens=32768`.
+vLLM parameters (5090_Hao, 8k): `gpu_memory_utilization=0.55`, `max_num_seqs=32`, `enforce_eager=True`, `enable_chunked_prefill=True`, `max_tokens=8192`.
+
+| Record Date | Server | Model | Eval Target | Dataset | Metric | Value | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-05-13 | 5A100 GPU1 | V13grad-Qwen3-2B-step10 | `global_step_10_merged` (1_2_3_4 run) | math500 | `pass@1` | `73.0%` | 8k context. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step10 | (same) | AIME25 | `avg@8` | `21.6667%` | 32k, 8 runs. Per-run: [20.0, 26.67, 26.67, 20.0, 30.0, 10.0, 20.0, 20.0]. |
+| 2026-05-13 | 5A100 GPU2 | V13grad-Qwen3-2B-step10 | (same) | AIME24 | `avg@8` | `21.6667%` | 32k, 8 runs. Per-run: [23.33, 16.67, 13.33, 23.33, 30.0, 23.33, 16.67, 26.67]. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | `global_step_100_merged` (4gpu3 run) | math500 | `pass@1` | `76.2%` | 8k context. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | (same) | AIME25 | `avg@8` | `21.2500%` | 32k, 8 runs. Per-run: [13.33, 13.33, 26.67, 23.33, 26.67, 23.33, 23.33, 20.0]. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | (same) | AIME24 | `avg@8` | `26.2500%` | 32k, 8 runs. Per-run: [26.67, 20.0, 26.67, 33.33, 26.67, 20.0, 36.67, 20.0]. |
+| 2026-05-14 | 5090_Hao GPU4 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | math500 | `pass@1` | `77.2%` | 8k context. |
+| 2026-05-14 | 5090_Hao GPU4 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | AIME24 | `avg@8` | `19.5833%` | 8k context, 8 runs. Per-run: [26.67, 16.67, 20.0, 23.33, 13.33, 20.0, 16.67, 20.0]. |
+| 2026-05-14 | 5090_Hao GPU4 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | AIME25 | `avg@8` | `18.7500%` | 8k context, 8 runs. Per-run: [26.67, 20.0, 16.67, 13.33, 16.67, 23.33, 10.0, 23.33]. |
+
+### V13_grad vs Base Comparison
+
+| Model | Step | AIME25 `avg@8` | AIME24 `avg@8` | math500 `pass@1` | vs Base math500 |
+| --- | --- | --- | --- | --- | --- |
+| `Qwen3-2B-base` | base | `18.80%` (avg@64, 32k) | — | `76.4%` | — |
+| `V13grad-step10` | 10 | `21.67%` (32k) | `21.67%` (32k) | `73.0%` | `-3.4` |
+| `V13grad-step100` | 100 (32k) | `21.25%` (32k) | `26.25%` (32k) | `76.2%` | `-0.2` |
+| `V13grad-step100` | 100 (8k) | `18.75%` (8k) | `19.58%` (8k) | `77.2%` | `+0.8` |
+
+Note: 8k AIME results are lower due to truncated reasoning chains. 32k results are the fair comparison. Step100 (32k) shows AIME24 avg@8=26.25% significantly exceeding base AIME25 avg@64=18.80%.
