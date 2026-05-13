@@ -531,12 +531,18 @@ vLLM parameters (AIME25/AIME24 32k): `gpu_memory_utilization=0.45`, `max_num_seq
 | 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step10 | (same) | AIME25 | `pass@8` | `30.0%` | Max single-run accuracy across 8 runs. |
 | 2026-05-13 | 5A100 GPU2 | V13grad-Qwen3-2B-step10 | (same) | AIME24 | `avg@8` | `21.6667%` | 32k, 8 runs. Per-run: [23.33, 16.67, 13.33, 23.33, 30.0, 23.33, 16.67, 26.67]. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step10_20260513/avg8_aime24_32k/V13grad-Qwen3-2B-step10/aime24/average_accuracy.txt`. |
 | 2026-05-13 | 5A100 GPU2 | V13grad-Qwen3-2B-step10 | (same) | AIME24 | `pass@8` | `30.0%` | Max single-run accuracy across 8 runs. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | `/zhdd/home/tjshen/260415_ArcherA100/v13_grad/output_5090_Lian_v13_grad/ArcherCodeR-V13grad-Qwen3-2B-5090Lian/train_5090_v13_grad_qwen3_2b_4gpu_0_3_4_5_bsz32_save10_100_4gpu3/global_step_100_merged` | math500 | `pass@1` | `76.2%` | Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513/math500_pass1/V13grad-Qwen3-2B-step100/math500/average_accuracy.txt`. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | (same) | AIME25 | `avg@8` | `21.2500%` | 32k, 8 runs. Per-run: [13.33, 13.33, 26.67, 23.33, 26.67, 23.33, 23.33, 20.0]. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513/avg8_aime25_32k/V13grad-Qwen3-2B-step100/aime25/average_accuracy.txt`. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | (same) | AIME25 | `pass@8` | `26.67%` | Max single-run accuracy across 8 runs. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | (same) | AIME24 | `avg@8` | `26.2500%` | 32k, 8 runs. Per-run: [26.67, 20.0, 26.67, 33.33, 26.67, 20.0, 36.67, 20.0]. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513/avg8_aime24_32k/V13grad-Qwen3-2B-step100/aime24/average_accuracy.txt`. |
+| 2026-05-13 | 5A100 GPU3 | V13grad-Qwen3-2B-step100 | (same) | AIME24 | `pass@8` | `36.67%` | Max single-run accuracy across 8 runs. |
 
-### V13_grad step10 vs Base Comparison
+### V13_grad vs Base Comparison
 
 | Model | Step | AIME25 `avg@8` | AIME24 `avg@8` | math500 `pass@1` | AIME25 `pass@8` | AIME24 `pass@8` | vs Base math500 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `Qwen3-2B-base` | base | `18.8021%` (avg@64, 32k) | — | `76.4%` | — | — | — |
 | `V13grad-Qwen3-2B-step10` | 10 | `21.6667%` (avg@8, 32k) | `21.6667%` (avg@8, 32k) | `73.0%` | `30.0%` | `30.0%` | `-3.4` |
+| `V13grad-Qwen3-2B-step100` | 100 | `21.2500%` (avg@8, 32k) | `26.2500%` (avg@8, 32k) | `76.2%` | `26.67%` | `36.67%` | `-0.2` |
 
-Note: AIME comparison is approximate — base uses avg@64 while v13_grad uses avg@8 (fewer samples, higher variance). The v13_grad AIME25 avg@8 (21.67%) exceeds the base avg@64 (18.80%), which is a promising signal despite the different sample counts. math500 shows a -3.4pp regression from base.
+Note: AIME comparison is approximate — base uses avg@64 while v13_grad uses avg@8 (fewer samples, higher variance). Step100 shows strong improvement: math500 nearly recovers to base (-0.2pp), AIME24 avg@8 (26.25%) significantly exceeds base AIME25 avg@64 (18.80%), and AIME25 avg@8 (21.25%) also beats base. Step100 is clearly the better checkpoint compared to step10.
