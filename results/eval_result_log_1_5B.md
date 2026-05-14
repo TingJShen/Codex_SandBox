@@ -22,7 +22,7 @@ One combined summary table. All models are listed together, grouped by `Family`,
 | Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 |  | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 | Qwen3-2B V13grad | `V13grad-Qwen3-2B-step10` | `10` | `21.6667%` | — | `21.6667%` | — | `73.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-|  | `V13grad-Qwen3-2B-step100` | `100` | `26.2500%` | — | `21.2500%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
+|  | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
 | V11 | `ArcherCodeR-V11-step80-merged` | `80` | `3.1771%` | `36.6667%` | `0.7813%` | `13.3333%` | `54.6%` | `10.75%` | `31.32%` | `2.94%` | `45.01%` | `15.00%` |
 |  | `ArcherCodeR-V11-step160-merged` | `160` | `3.4375%` | `26.6667%` | `0.9375%` | `20.0%` | `54.6%` | `11.50%` | `29.02%` | `2.49%` | `43.01%` | `14.34%` |
 |  | `ArcherCodeR-V11-step240-merged` | `240` | `3.2813%` | `26.6667%` | `0.8854%` | `20.0%` | `53.0%` | `13.50%` | `30.90%` | `2.71%` | `47.11%` | `15.70%` |
@@ -65,7 +65,7 @@ Record date: 2026-04-27. Initial source root: `/zhdd/home/tjshen/260415_ArcherA1
 | Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 | Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 | Qwen3-2B V13grad | `V13grad-Qwen3-2B-step10` | `10` | `21.6667%` | — | `21.6667%` | — | `73.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-| Qwen3-2B V13grad | `V13grad-Qwen3-2B-step100` | `100` | `26.2500%` | — | `21.2500%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
+| Qwen3-2B V13grad | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
 
 Qwen3-2B AIME24 rerun uses the corrected shared-directory dataset `/zhdd/home/tjshen/260415_ArcherA100/eval_datasets_5090_Hao/aime24_eval`. Base, `8A100-step100`, `5090Lian-step100`, `8A100-step200`, `8A100-step300`, `8A100-step400`, and the three latest `5090Lian` step100 variants above are complete for AIME24/AIME25/math500/LCB as of the 2026-05-07 sweep.
 
