@@ -22,7 +22,7 @@ One combined summary table. All models are listed together, grouped by `Family`,
 | Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 |  | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 | Qwen3-2B V13grad | `V13grad-Qwen3-2B-step10` | `10` | `21.6667%` | — | `21.6667%` | — | `73.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-|  | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
+|  | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `8.14%` | `48.26%` | `16.09%` |
 | V11 | `ArcherCodeR-V11-step80-merged` | `80` | `3.1771%` | `36.6667%` | `0.7813%` | `13.3333%` | `54.6%` | `10.75%` | `31.32%` | `2.94%` | `45.01%` | `15.00%` |
 |  | `ArcherCodeR-V11-step160-merged` | `160` | `3.4375%` | `26.6667%` | `0.9375%` | `20.0%` | `54.6%` | `11.50%` | `29.02%` | `2.49%` | `43.01%` | `14.34%` |
 |  | `ArcherCodeR-V11-step240-merged` | `240` | `3.2813%` | `26.6667%` | `0.8854%` | `20.0%` | `53.0%` | `13.50%` | `30.90%` | `2.71%` | `47.11%` | `15.70%` |
@@ -65,7 +65,7 @@ Record date: 2026-04-27. Initial source root: `/zhdd/home/tjshen/260415_ArcherA1
 | Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 | Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
 | Qwen3-2B V13grad | `V13grad-Qwen3-2B-step10` | `10` | `21.6667%` | — | `21.6667%` | — | `73.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-| Qwen3-2B V13grad | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
+| Qwen3-2B V13grad | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `8.14%` | `48.26%` | `16.09%` |
 
 Qwen3-2B AIME24 rerun uses the corrected shared-directory dataset `/zhdd/home/tjshen/260415_ArcherA100/eval_datasets_5090_Hao/aime24_eval`. Base, `8A100-step100`, `5090Lian-step100`, `8A100-step200`, `8A100-step300`, `8A100-step400`, and the three latest `5090Lian` step100 variants above are complete for AIME24/AIME25/math500/LCB as of the 2026-05-07 sweep.
 
@@ -545,7 +545,7 @@ vLLM parameters (AIME25/AIME24 32k): `gpu_memory_utilization=0.45`, `max_num_seq
 | 2026-05-14 | 5090_Hao GPU4 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | AIME25 | `avg@8` | `18.7500%` | 8k context, 8 runs. Per-run: [26.67, 20.0, 16.67, 13.33, 16.67, 23.33, 10.0, 23.33]. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_step100/avg8_aime25/V13grad-Qwen3-2B-step100/aime25/average_accuracy.txt`. |
 | 2026-05-14 | 5090_Hao GPU5 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | LCB-code_generation | `pass@1` | `20.50%` | OpenCompass LCB, max_seq_len=32768, max_out_len=4096, batch_size=8, temperature=0, top_k=1. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513/code_lcb_V13grad-Qwen3-2B-step100/20260513_170136/summary/summary_20260513_170136.csv`. |
 | 2026-05-14 | 5090_Hao GPU5 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | LCB-code_execution | `pass@1` | `19.62%` | (same source) |
-| 2026-05-14 | 5090_Hao GPU5 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | LCB-test_output | `pass@1` | `4.75%` | (same source) |
+| 2026-05-14 | 5090_Hao GPU5 | V13grad-Qwen3-2B-step100 | (same, 4gpu3 run) | LCB-test_output | `pass@1` | `8.14%` | 16k rerun (max_out_len=16384, batch_size=4). Original 4k result was 4.75% due to truncation. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513/test_output_16k_V13grad-Qwen3-2B-step100/20260514_120423/summary/summary_20260514_120423.csv`. |
 
 ### V13_grad vs Base Comparison
 
@@ -553,7 +553,7 @@ vLLM parameters (AIME25/AIME24 32k): `gpu_memory_utilization=0.45`, `max_num_seq
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `Qwen3-2B-base` | base | `18.8021%` (avg@64, 32k) | — | `76.4%` | — | — | — | `43.70%` | `14.57%` |
 | `V13grad-Qwen3-2B-step10` | 10 | `21.6667%` (avg@8, 32k) | `21.6667%` (avg@8, 32k) | `73.0%` | `30.0%` | `30.0%` | `-3.4` | pending | pending |
-| `V13grad-Qwen3-2B-step100` | 100 (32k) | `21.2500%` (avg@8, 32k) | `26.2500%` (avg@8, 32k) | `76.2%` | `26.67%` | `36.67%` | `-0.2` | `44.87%` | `14.96%` |
+| `V13grad-Qwen3-2B-step100` | 100 (32k) | `21.2500%` (avg@8, 32k) | `26.2500%` (avg@8, 32k) | `76.2%` | `26.67%` | `36.67%` | `-0.2` | `48.26%` | `16.09%` |
 | `V13grad-Qwen3-2B-step100` | 100 (8k) | `18.7500%` (avg@8, 8k) | `19.5833%` (avg@8, 8k) | `77.2%` | — | — | `+0.8` | — | — |
 
 Note: AIME comparison is approximate — base uses avg@64 while v13_grad uses avg@8 (fewer samples, higher variance). Step100 shows strong improvement: math500 nearly recovers to base (-0.2pp with 32k, +0.8pp with 8k), AIME24 avg@8 (26.25% at 32k) significantly exceeds base AIME25 avg@64 (18.80%), and AIME25 avg@8 (21.25% at 32k) also beats base. The 8k AIME results are lower due to truncated reasoning chains — 32k results are the fair comparison. Step100 is clearly the better checkpoint compared to step10.
