@@ -10,6 +10,7 @@ It is intentionally lightweight: it keeps procedures, manifests, scripts, result
 | --- | --- |
 | `TESTING_WORKFLOW.md` | Full evaluation workflow, launch commands, failure analysis, fixes, and monitoring logic. |
 | `RESULTS_SUMMARY.md` | Compact result summary for math, code, and Arena-Hard. |
+| `BATCH_AWARE_DATA_SHAPLEY_GRPO_V13_20260515.md` | Batch-aware Taylor / Data Shapley formulation for the planned V13 GRPO sampler. |
 | `CURRENT_PROGRESS_20260507.md` | Last successful live progress snapshot and pending work. |
 | `REMOTE_PATHS_AND_RESUME.md` | Remote paths, resume commands, and monitoring commands. |
 | `code/` | Lightweight V13 source-code snapshot with large/generated files excluded. |
