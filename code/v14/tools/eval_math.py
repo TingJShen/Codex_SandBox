@@ -123,7 +123,7 @@ def check_answer(predicted: str, ground_truth: str) -> bool:
 
 
 def query_model(api_base: str, model: str, prompt: str, temperature: float = 0.0,
-                max_tokens: int = 4096, n: int = 1) -> list:
+                max_tokens: int = 32768, n: int = 1) -> list:
     url = f"{api_base}/chat/completions"
     messages = [
         {"role": "system", "content": "You are a helpful math assistant. Solve the problem step by step and put your final answer in \\boxed{}."},
@@ -150,7 +150,7 @@ def query_model(api_base: str, model: str, prompt: str, temperature: float = 0.0
     return [""] * n
 
 
-def eval_pass_at_1(api_base: str, model: str, dataset: list, parallel: int = 8) -> dict:
+def eval_pass_at_1(api_base: str, model: str, dataset: list, max_tokens: int = 32768, parallel: int = 8) -> dict:
     correct = 0
     total = len(dataset)
     results = []
@@ -159,7 +159,7 @@ def eval_pass_at_1(api_base: str, model: str, dataset: list, parallel: int = 8) 
         problem = item["problem"]
         gt_raw = str(item.get("answer", item.get("solution", "")))
         gt = extract_gt_answer(gt_raw)
-        responses = query_model(api_base, model, problem, temperature=0.0, n=1)
+        responses = query_model(api_base, model, problem, temperature=0.0, max_tokens=max_tokens, n=1)
         pred = extract_answer(responses[0]) if responses[0] else ""
         is_correct = check_answer(pred, gt)
         return {"problem": problem[:80], "predicted": pred, "ground_truth": gt, "correct": is_correct}
@@ -176,7 +176,7 @@ def eval_pass_at_1(api_base: str, model: str, dataset: list, parallel: int = 8) 
     return {"accuracy": f"{accuracy*100:.1f}%", "correct": correct, "total": total, "details": results}
 
 
-def eval_avg_at_n(api_base: str, model: str, dataset: list, n_samples: int = 64,
+def eval_avg_at_n(api_base: str, model: str, dataset: list, n_samples: int = 64, max_tokens: int = 32768,
                   parallel: int = 4) -> dict:
     per_problem_scores = []
     results = []
@@ -185,7 +185,7 @@ def eval_avg_at_n(api_base: str, model: str, dataset: list, n_samples: int = 64,
         problem = item["problem"]
         gt_raw = str(item.get("answer", ""))
         gt = extract_gt_answer(gt_raw)
-        responses = query_model(api_base, model, problem, temperature=0.7, max_tokens=4096, n=n_samples)
+        responses = query_model(api_base, model, problem, temperature=0.7, max_tokens=max_tokens, n=n_samples)
         correct_count = 0
         for resp in responses:
             pred = extract_answer(resp) if resp else ""
@@ -223,6 +223,7 @@ def main():
     parser.add_argument("--n-samples", type=int, default=1)
     parser.add_argument("--output", required=True)
     parser.add_argument("--parallel", type=int, default=8)
+    parser.add_argument("--max-tokens", type=int, default=32768)
     args = parser.parse_args()
 
     print(f"Loading dataset: {args.dataset}")
@@ -232,10 +233,10 @@ def main():
     if args.n_samples > 1:
         print(f"Running avg@{args.n_samples} evaluation...")
         result = eval_avg_at_n(args.api_base, args.model, dataset,
-                               n_samples=args.n_samples, parallel=args.parallel)
+                               n_samples=args.n_samples, max_tokens=args.max_tokens, parallel=args.parallel)
     else:
         print("Running pass@1 evaluation...")
-        result = eval_pass_at_1(args.api_base, args.model, dataset, parallel=args.parallel)
+        result = eval_pass_at_1(args.api_base, args.model, dataset, max_tokens=args.max_tokens, parallel=args.parallel)
 
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     with open(args.output, "w") as f:
