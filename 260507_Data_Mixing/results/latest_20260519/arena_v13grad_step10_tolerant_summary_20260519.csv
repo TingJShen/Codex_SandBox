@@ -1,0 +1,4 @@
+model,category,score_percent,score_count,used_rows,dropped_rows
+V13grad-Qwen3-2B-step10,creative_writing,18.812,1002,249,0
+V13grad-Qwen3-2B-step10,hard_prompt,11.033,1994,494,0
+V13grad-Qwen3-2B-step10,__overall__,13.635,2996,743,0

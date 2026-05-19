@@ -19,10 +19,15 @@ One combined summary table. All models are listed together, grouped by `Family`,
 |  | `ArcherCodeR-V12-Qwen3-2B-8A100-step200` | `200` | `20.2083%` | `66.6667%` | `18.2813%` | `66.6667%` | `81.2%` | `20.75%` | `18.58%` | `5.88%` | `45.21%` | `15.07%` |
 |  | `ArcherCodeR-V12-Qwen3-2B-8A100-step300` | `300` | `18.7500%` | `76.6667%` | `16.4583%` | `63.3333%` | `76.6%` | `19.00%` | `31.94%` | `2.04%` | `52.98%` | `17.66%` |
 |  | `ArcherCodeR-V12-Qwen3-2B-8A100-step400` | `400` | `15.8854%` | `60.0000%` | `15.4687%` | `60.0000%` | `74.8%` | `22.00%` | `33.61%` | `0.23%` | `55.84%` | `18.61%` |
-| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-|  | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-| Qwen3-2B V13grad | `V13grad-Qwen3-2B-step10` | `10` | `21.6667%` | — | `21.6667%` | — | `73.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-|  | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
+| Qwen3-2B V13 | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | `9.6354%` | `46.6667%` | `13.8021%` | `36.6667%` | `74.4%` | `4.25%` | `14.82%` | `1.36%` | `20.43%` | `6.81%` |
+|  | `V13-Qwen3-2B-GradSketch-step200` | `200` | `21.4063%` | `70.00%` | `17.5521%` | `50.00%` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
+|  | `V13-Qwen3-2B-GradSketch-step300` | `300` | `17.3437%` | `66.67%` | `14.1146%` | `56.67%` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
+| Qwen3-2B V13grad quick | `V13grad-Qwen3-2B-step10` | `10` | `21.6667% avg@8` | `60.00% pass@8` | `21.6667% avg@8` | `40.00% pass@8` | `73.0%` | `12.25%` | `14.20%` | `17.87%` | `44.32%` | `14.77%` |
+|  | `V13grad-Qwen3-2B-step100` | `100` | `25.4167% avg@8` | `60.00% pass@8` | `19.1667% avg@8` | `40.00% pass@8` | `77.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
+| V14 round6 exploratory | `V14-R6-Qwen25-1_5B-step50` | `50` | `1.7188%` | `26.6667%` | `0.7292%` | `23.3333%` | `46.8%` | `15.00%` | `30.06%` | `5.66%` | `50.72%` | `16.91%` |
+|  | `V14-R6-Qwen25-1_5B-step100` | `100` | `2.1875%` | `26.6667%` | `0.4688%` | `20.0000%` | `50.2%` | `15.00%` | `29.23%` | `3.17%` | `47.40%` | `15.80%` |
+|  | `V14-R6-Qwen25-1_5B-step150` | `150` | `2.0833%` | `23.3333%` | `0.7292%` | `23.3333%` | `48.0%` | `14.75%` | `29.85%` | `2.49%` | `47.09%` | `15.70%` |
+|  | `V14-R6-Qwen25-1_5B-step200` | `200` | `2.3958%` | `36.6667%` | `0.5208%` | `13.3333%` | `49.0%` | `15.50%` | `30.48%` | `7.92%` | `53.90%` | `17.97%` |
 | V11 | `ArcherCodeR-V11-step80-merged` | `80` | `3.1771%` | `36.6667%` | `0.7813%` | `13.3333%` | `54.6%` | `10.75%` | `31.32%` | `2.94%` | `45.01%` | `15.00%` |
 |  | `ArcherCodeR-V11-step160-merged` | `160` | `3.4375%` | `26.6667%` | `0.9375%` | `20.0%` | `54.6%` | `11.50%` | `29.02%` | `2.49%` | `43.01%` | `14.34%` |
 |  | `ArcherCodeR-V11-step240-merged` | `240` | `3.2813%` | `26.6667%` | `0.8854%` | `20.0%` | `53.0%` | `13.50%` | `30.90%` | `2.71%` | `47.11%` | `15.70%` |
@@ -62,10 +67,11 @@ Record date: 2026-04-27. Initial source root: `/zhdd/home/tjshen/260415_ArcherA1
 | Qwen3-2B V12 | `ArcherCodeR-V12-Qwen3-2B-8A100-step200` | `200` | `20.2083%` | `66.6667%` | `18.2813%` | `66.6667%` | `81.2%` | `20.75%` | `18.58%` | `5.88%` | `45.21%` | `15.07%` |
 | Qwen3-2B V12 | `ArcherCodeR-V12-Qwen3-2B-8A100-step300` | `300` | `18.7500%` | `76.6667%` | `16.4583%` | `63.3333%` | `76.6%` | `19.00%` | `31.94%` | `2.04%` | `52.98%` | `17.66%` |
 | Qwen3-2B V12 | `ArcherCodeR-V12-Qwen3-2B-8A100-step400` | `400` | `15.8854%` | `60.0000%` | `15.4687%` | `60.0000%` | `74.8%` | `22.00%` | `33.61%` | `0.23%` | `55.84%` | `18.61%` |
-| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `pending` | `pending` | `14.17%*` | `pending` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step300` | `300` | `pending` | `pending` | `12.03%*` | `pending` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-| Qwen3-2B V13grad | `V13grad-Qwen3-2B-step10` | `10` | `21.6667%` | — | `21.6667%` | — | `73.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
-| Qwen3-2B V13grad | `V13grad-Qwen3-2B-step100` (32k) | `100` | `25.4167%` | — | `19.1667%` | — | `76.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
+| Qwen3-2B V13 | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | `9.6354%` | `46.6667%` | `13.8021%` | `36.6667%` | `74.4%` | `4.25%` | `14.82%` | `1.36%` | `20.43%` | `6.81%` |
+| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step200` | `200` | `21.4063%` | `70.00%` | `17.5521%` | `50.00%` | `75.6%` | `pending` | `pending` | `pending` | `pending` | `pending` |
+| Qwen3-2B V13 | `V13-Qwen3-2B-GradSketch-step300` | `300` | `17.3437%` | `66.67%` | `14.1146%` | `56.67%` | `74.0%` | `pending` | `pending` | `pending` | `pending` | `pending` |
+| Qwen3-2B V13grad quick | `V13grad-Qwen3-2B-step10` | `10` | `21.6667% avg@8` | `60.00% pass@8` | `21.6667% avg@8` | `40.00% pass@8` | `73.0%` | `12.25%` | `14.20%` | `17.87%` | `44.32%` | `14.77%` |
+| Qwen3-2B V13grad quick | `V13grad-Qwen3-2B-step100` | `100` | `25.4167% avg@8` | `60.00% pass@8` | `19.1667% avg@8` | `40.00% pass@8` | `77.2%` | `20.50%` | `19.62%` | `4.75%` | `44.87%` | `14.96%` |
 
 Qwen3-2B AIME24 rerun uses the corrected shared-directory dataset `/zhdd/home/tjshen/260415_ArcherA100/eval_datasets_5090_Hao/aime24_eval`. Base, `8A100-step100`, `5090Lian-step100`, `8A100-step200`, `8A100-step300`, `8A100-step400`, and the three latest `5090Lian` step100 variants above are complete for AIME24/AIME25/math500/LCB as of the 2026-05-07 sweep.
 
@@ -77,6 +83,38 @@ Qwen3-2B latest backfill sources:
 | `ArcherCodeR-V12-Qwen3-2B-5090Lian-20260427-step100` | AIME24/AIME25/math500/LCB | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_qwen3_2b_5090_lian_latest_20260428_mmfix` |
 | `ArcherCodeR-V12-Qwen3-2B-5090Lian-20260427-085531-step100` | AIME24/AIME25/math500/LCB | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_qwen3_2b_5090_lian_latest_20260428_mmfix` |
 | `ArcherCodeR-V12-Qwen3-2B-5090Lian-20260428-step100` | AIME24/AIME25/math500/LCB | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_qwen3_2b_5090_lian_latest_20260428_mmfix` |
+
+## V13 Math Evaluation Status
+
+Record date: 2026-05-08. Model: `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200`. Actor checkpoint: `/zhdd/home/tjshen/260415_ArcherA100/v13/output_5090_Lian/ArcherCodeR-V13-Qwen3-2B-5090Lian/train_5090_v13_qwen3_2b_4gpu_0_2_3_5_bsz32_save10_100_save10first_1/global_step_200/actor`. Merged model: `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200-merged`. New V13 math policy from 2026-05-08 07:26: use `MAX_TOKENS=8192` for Math500/AIME24/AIME25. Runtime uses `MAX_MODEL_LEN=9216` only to leave prompt room. Earlier `MAX_TOKENS=512` smoke is invalid; earlier `MAX_TOKENS=1024` results are retained as legacy, not the current official V13 math setting.
+
+| Date | Server | Env | Model | Step | Dataset | Runs | `MAX_TOKENS` | Metric | Value | Status | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-05-08 | 5090_Hao GPU6 | `llama2_vllm` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Math500 | `1` | `1024` | `pass@1` | `100.0000%` | Smoke only, `nrows=1`; not official full Math500. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_5090Hao_gpu6/smoke_fast1024_eager/math500_pass1/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/math500/average_accuracy.txt` |
+| 2026-05-08 | 5090_Hao GPU6 | `llama2_vllm` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Math500 | `1` | `1024` | `pass@1` | `44.2000%` | Legacy full Math500, superseded by 8192 rerun. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_5090Hao_gpu6/full1024_eager/math500_pass1/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/math500/average_accuracy.txt` |
+| 2026-05-08 | 5090_Hao GPU6 | `llama2_vllm_copy` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Math500 | `1` | `8192` | `pass@1` | `74.4000%` | Complete full Math500 under current 8192 policy. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/math500_pass1/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/math500/average_accuracy.txt` |
+| 2026-05-08 | 5090_Hao GPU5 | `llama2_vllm_copy` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | AIME24 | `64` | `8192` | `avg@64/pass@64` | `9.6354% / 46.6667%` | Complete under current 8192 policy; `pass@64` computed from 64 raw CSV files. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/avg64_aime24/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/aime24/average_accuracy.txt` |
+| 2026-05-08 | 5090_Hao GPU4 | `llama2_vllm_copy` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | AIME25 | `64` | `8192` | `avg@64/pass@64` | `13.8021% / 36.6667%` | Complete under current 8192 policy; `pass@64` computed from 64 raw CSV files. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/avg64_aime25/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/aime25/average_accuracy.txt` |
+
+Sanity check on 2026-05-09: no evaluation bug found in the current V13 math outputs. AIME24 has 64 CSV files, each with 30 rows, identical problem order, 185 correct samples out of 1920, matching `avg@64=9.6354%`; `pass@64=46.6667%` means 14 of 30 problems had at least one correct sample. AIME25 has 64 CSV files, each with 30 rows, identical problem order, 265 correct samples out of 1920, matching `avg@64=13.8021%`; `pass@64=36.6667%` means 11 of 30 problems had at least one correct sample. Full prompt leak scan found zero answer substrings, zero boxed-answer literals, zero solution substrings, and zero empty generations in AIME24/AIME25. Math500 has 500 rows, 372 correct rows, matching `74.4000%`; `args.json` confirms `nrows=null`, `max_tokens=8192`, and the local Math500 dataset path.
+
+## V13 Code Evaluation Status
+
+Record date: 2026-05-11. Model: `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200`. Merged model: `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200-merged`.
+
+| Date | Server | Env | Model | Step | Dataset | Metric | Value | Status | Source |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-05-09 | 5090_Lian GPU1 | `5090_opencompass` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | LCB-code_generation | `pass@1` | `4.25%` | Complete. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_lcb_arena_20260509/code_lcb_ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/20260509_084334/summary/summary_20260509_084334.csv` |
+| 2026-05-09 | 5090_Lian GPU1 | `5090_opencompass` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | LCB-code_execution | `pass@1` | `14.82%` | Complete. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_lcb_arena_20260509/code_lcb_ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/20260509_084334/summary/summary_20260509_084334.csv` |
+| 2026-05-09 | 5090_Lian GPU1 | `5090_opencompass` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | LCB-test_output | `pass@1` | `1.36%` | Complete. | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_lcb_arena_20260509/code_lcb_ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/20260509_084334/summary/summary_20260509_084334.csv` |
+| 2026-05-11 | local computed | `python` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | LCB-total | computed | `20.43%` | Computed from the three LCB pass@1 values with a script. | Values: `4.25 + 14.82 + 1.36` |
+| 2026-05-11 | local computed | `python` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | LCB-mean | computed | `6.81%` | Computed from LCB total divided by 3 with a script. | Values: `20.43 / 3` |
+| 2026-05-09 | 5090_Hao/5090_Lian answer shards | `5090_opencompass` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Arena-Hard-v2.0 | answer_generation | `750/750 answers` | Answers complete. | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/data/arena-hard-v2.0/model_answer/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200.jsonl` |
+| 2026-05-11 | 5090_Hao GPUs 2,3,4,5 | `5090_opencompass` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Arena-Hard-v2.0 | local 32B judge | `750/750 judgments` | Complete; tolerant summary dropped 5 malformed judge rows and used 745 rows. | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/data/arena-hard-v2.0/model_judgment/Qwen2.5-32B-Instruct/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200.jsonl` |
+| 2026-05-11 | local computed | `python` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Arena-Hard-v2.0 | creative_writing | `11.021%` | Complete tolerant aggregate. | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/arena_tolerant_summary_v13j5_patch_20260511_0642.csv` |
+| 2026-05-11 | local computed | `python` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Arena-Hard-v2.0 | hard_prompt | `8.071%` | Complete tolerant aggregate. | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/arena_tolerant_summary_v13j5_patch_20260511_0642.csv` |
+| 2026-05-11 | local computed | `python` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Arena-Hard-v2.0 | overall | `9.126%` | Complete tolerant aggregate, `used_rows=745`, `dropped_rows=5`. | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/arena_tolerant_summary_v13j5_patch_20260511_0642.csv` |
+| 2026-05-11 | local computed | `python` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | Arena-Hard-v2.0 | token usage | `11,466,526 total tokens` | `answer_requests=750`, `judge_requests=1500`, `answer_input=211,013`, `answer_output=2,694,429`, `judge_input=7,836,256`, `judge_output=724,828`. | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/arena_token_usage_v13j5_patch_20260511_0642.csv` |
 
 ## Arena-Hard Local 32B Judge
 
@@ -125,6 +163,18 @@ Latest completed rerun score for `Qwen2.5-1.5B-Instruct` with judge `Qwen2.5-32B
 
 Small CSV backups for the latest Arena summaries/token usage are stored locally at `D:\Codex_Sandbox\Huawei_Hard\arena_hard_results_20260422_latest` and `D:\Codex_Sandbox\Huawei_Hard\arena_hard_results_20260423_temp06_live`. Large raw model-answer and judgment JSONL files were not copied locally; their remote source paths are listed in the raw data coverage table above.
 
+Latest V13 Arena final score backfill on 2026-05-14:
+
+| Record Date | Judge | Model | Step | hard_prompt score | creative_writing score | overall score | Used rows | Dropped rows | Source |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| 2026-05-11 | `Qwen2.5-32B-Instruct` | `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `200` | `8.071%` | `11.021%` | `9.126%` | `745/750` | `5` | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/arena_tolerant_summary_v13j5_patch_20260511_0642.csv` |
+
+Latest V13 Arena token usage backfill on 2026-05-14:
+
+| Model | answer req | judge req | answer input tokens | answer output tokens | judge input tokens | judge output tokens | total tokens | Source |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `ArcherCodeR-V13-Qwen3-2B-5090Lian-step200` | `750` | `1500` | `211,013` | `2,694,429` | `7,836,256` | `724,828` | `11,466,526` | `/zhdd/home/tjshen/260415_ArcherA100/arena_v13_qwen3_step200_temp06_20260509_0825/arena_token_usage_v13j5_patch_20260511_0642.csv` |
+
 Latest raw-data sweep on 2026-04-22 15:58:
 
 | Source | Data type | Current state | Recording action |
@@ -132,6 +182,99 @@ Latest raw-data sweep on 2026-04-22 15:58:
 | `/zhdd/home/tjshen/260415_ArcherA100/arena_hard_v12_400_500_local32b_5090_hao_flashinfer_20260421_030055` | Arena-Hard judgments and token summaries | 2026-05-07 sweep found the base rerun completed at `750/750`; the older V12 step500 local32B judgment remains `497/750` partial in this specific non-temp0.6 run. | Updated base rerun above as complete; kept V12 step500 marked partial for this older run. |
 | `/zhdd/home/tjshen/260415_ArcherA100/diag_8A100_v12_qwen3_2b_4gpu_20260422` | Qwen3-2B V12 training/diagnostic logs | New training logs exist; latest inspected tail was training progress, not an eval summary. | Not added to metric tables yet; revisit after checkpoint merge/eval summaries appear. |
 | `/zhdd/home/tjshen/260415_ArcherA100/diag_5090_Lian_v12_qwen3_2b_any2_3g_fixenv_persistent4_pairsafe_20260422` | Qwen3-2B V12 training smoke logs | New short-run logs exist; latest inspected tail had step-level training metrics only. | Not added to metric tables yet; no final math/code result found. |
+
+## V13 Qwen3-2B GradSketch Backfill
+
+Record date: 2026-05-14. These rows were found on the shared server after an external AI ran tests but disconnected before updating the main log. Math/AIME sources are under `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511`. AIME `pass@64` values were recomputed from raw `run*_inference_eval_results.csv` files with a script.
+
+| Date | Server | Model | Step | Dataset | Runs | `MAX_TOKENS` | Metric | Value | Source |
+| --- | --- | --- | --- | --- | ---: | ---: | --- | ---: | --- |
+| 2026-05-11 | 5090_Hao | `V13-Qwen3-2B-GradSketch-step200` | `200` | math500 | `1` | `8192` | `pass@1` | `75.6000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/math500_pass1/V13-Qwen3-2B-GradSketch-step200/math500/average_accuracy.txt` |
+| 2026-05-12 | 5A100 GPU0 | `V13-Qwen3-2B-GradSketch-step200` | `200` | AIME25 | `64` | `32768` | `avg@64` | `17.5521%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/avg64_aime25_32k_a100/V13-Qwen3-2B-GradSketch-step200/aime25/average_accuracy.txt` |
+| 2026-05-12 | 5A100 GPU0 | `V13-Qwen3-2B-GradSketch-step200` | `200` | AIME25 | `64` | `32768` | `pass@64` | `50.0000%` | Computed from 64 raw CSV files in the same AIME25 directory. |
+| 2026-05-12 | 5A100 GPU2 | `V13-Qwen3-2B-GradSketch-step200` | `200` | AIME24 | `64` | `32768` | `avg@64` | `21.4063%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/avg64_aime24/V13-Qwen3-2B-GradSketch-step200/aime24/average_accuracy.txt` |
+| 2026-05-12 | 5A100 GPU2 | `V13-Qwen3-2B-GradSketch-step200` | `200` | AIME24 | `64` | `32768` | `pass@64` | `70.0000%` | Computed from 64 raw CSV files in the same AIME24 directory. |
+| 2026-05-11 | 5090_Hao | `V13-Qwen3-2B-GradSketch-step300` | `300` | math500 | `1` | `8192` | `pass@1` | `74.0000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/math500_pass1/V13-Qwen3-2B-GradSketch-step300/math500/average_accuracy.txt` |
+| 2026-05-12 | 5A100 GPU1 | `V13-Qwen3-2B-GradSketch-step300` | `300` | AIME25 | `64` | `32768` | `avg@64` | `14.1146%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/avg64_aime25_32k_a100/V13-Qwen3-2B-GradSketch-step300/aime25/average_accuracy.txt` |
+| 2026-05-12 | 5A100 GPU1 | `V13-Qwen3-2B-GradSketch-step300` | `300` | AIME25 | `64` | `32768` | `pass@64` | `56.6667%` | Computed from 64 raw CSV files in the same AIME25 directory. |
+| 2026-05-12 | 5A100 GPU3 | `V13-Qwen3-2B-GradSketch-step300` | `300` | AIME24 | `64` | `32768` | `avg@64` | `17.3437%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_300_20260511/avg64_aime24/V13-Qwen3-2B-GradSketch-step300/aime24/average_accuracy.txt` |
+| 2026-05-12 | 5A100 GPU3 | `V13-Qwen3-2B-GradSketch-step300` | `300` | AIME24 | `64` | `32768` | `pass@64` | `66.6667%` | Computed from 64 raw CSV files in the same AIME24 directory. |
+
+The earlier AIME25 `MAX_TOKENS=8192` rows for these same checkpoints are kept only as legacy diagnostic results: step200 `14.1667% avg@64 / 46.6667% pass@64`, step300 `12.0312% avg@64 / 36.6667% pass@64`.
+
+## V13grad Qwen3-2B Quick Backfill
+
+Record date: 2026-05-14. These are quick 8-run AIME checks, not full `avg@64` results, so they are marked `avg@8/pass@8` in the summary. Sources are under `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step10_20260513`, `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_step100`, `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_step100_32k`, and `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513`.
+
+| Date | Model | Step | Dataset | Runs | `MAX_TOKENS` | Metric | Value | Source |
+| --- | --- | --- | --- | ---: | ---: | --- | ---: | --- |
+| 2026-05-13 | `V13grad-Qwen3-2B-step10` | `10` | math500 | `1` | `8192` | `pass@1` | `73.0000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step10_20260513/math500_pass1/V13grad-Qwen3-2B-step10/math500/average_accuracy.txt` |
+| 2026-05-13 | `V13grad-Qwen3-2B-step10` | `10` | AIME24 | `8` | `32768` | `avg@8/pass@8` | `21.6667% / 60.0000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step10_20260513/avg8_aime24_32k/V13grad-Qwen3-2B-step10/aime24/average_accuracy.txt` |
+| 2026-05-13 | `V13grad-Qwen3-2B-step10` | `10` | AIME25 | `8` | `32768` | `avg@8/pass@8` | `21.6667% / 40.0000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step10_20260513/avg8_aime25_32k/V13grad-Qwen3-2B-step10/aime25/average_accuracy.txt` |
+| 2026-05-14 | `V13grad-Qwen3-2B-step10` | `10` | LCB-code_generation | `1` | `4096` | `pass@1` | `12.25%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step10_20260514/code_lcb_V13grad-Qwen3-2B-step10/20260514_074252/summary/summary_20260514_074252.csv` |
+| 2026-05-14 | `V13grad-Qwen3-2B-step10` | `10` | LCB-code_execution | `1` | `4096` | `pass@1` | `14.20%` | Same LCB summary CSV. |
+| 2026-05-14 | `V13grad-Qwen3-2B-step10` | `10` | LCB-test_output | `1` | `4096` | `pass@1` | `17.87%` | Same LCB summary CSV. |
+| 2026-05-14 | local computed | `10` | LCB-total | `1` | `4096` | computed | `44.32%` | Computed with Python from `12.25 + 14.20 + 17.87`. |
+| 2026-05-14 | local computed | `10` | LCB-mean | `1` | `4096` | computed | `14.77%` | Computed with Python from `44.32 / 3`. |
+| 2026-05-13 | `V13grad-Qwen3-2B-step100` | `100` | math500 | `1` | `8192` | `pass@1` | `77.2000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_step100/math500_pass1/V13grad-Qwen3-2B-step100/math500/average_accuracy.txt` |
+| 2026-05-13 | `V13grad-Qwen3-2B-step100` | `100` | AIME24 | `8` | `32768` | `avg@8/pass@8` | `25.4167% / 60.0000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_step100_32k/avg8_aime24_32k/V13grad-Qwen3-2B-step100/aime24/average_accuracy.txt` |
+| 2026-05-13 | `V13grad-Qwen3-2B-step100` | `100` | AIME25 | `8` | `32768` | `avg@8/pass@8` | `19.1667% / 40.0000%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_step100_32k/avg8_aime25_32k/V13grad-Qwen3-2B-step100/aime25/average_accuracy.txt` |
+| 2026-05-13 | `V13grad-Qwen3-2B-step100` | `100` | LCB-code_generation | `1` | `4096` | `pass@1` | `20.50%` | `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513/code_lcb_V13grad-Qwen3-2B-step100/20260513_170136/summary/summary_20260513_170136.csv` |
+| 2026-05-13 | `V13grad-Qwen3-2B-step100` | `100` | LCB-code_execution | `1` | `4096` | `pass@1` | `19.62%` | Same LCB summary CSV. |
+| 2026-05-13 | `V13grad-Qwen3-2B-step100` | `100` | LCB-test_output | `1` | `4096` | `pass@1` | `4.75%` | Same LCB summary CSV. |
+| 2026-05-14 | local computed | `100` | LCB-total | `1` | `4096` | computed | `44.87%` | Computed with Python Decimal from `20.50 + 19.62 + 4.75`. |
+| 2026-05-14 | local computed | `100` | LCB-mean | `1` | `4096` | computed | `14.96%` | Computed with Python Decimal from `44.87 / 3`. |
+
+Additional earlier V13grad step100 outputs exist but are not the latest selected row: `math500=76.2000%`, AIME24 32k `26.2500% / 53.3333%`, AIME25 32k `21.2500% / 50.0000%` under `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13grad_qwen3_2b_step100_20260513`.
+
+V13grad Arena status was refreshed on 2026-05-19 with the local `Qwen2.5-32B-Instruct` judge. Step10 has `743/750` judgment rows and step100 has `746/750` judgment rows after failed API rows were filtered; tolerant partial scores are recorded in the 2026-05-19 backfill section below.
+
+## Latest Server Backfill 2026-05-19
+
+Small CSV backups for this sweep are stored in `results/latest_20260519/`. Large raw Arena JSONL files remain on the server and are not copied into Git.
+
+### Arena-Hard Local 32B Judge
+
+| Model | Source dir | Judgment rows | hard_prompt | creative_writing | overall | Used rows | Dropped rows | Total tokens | CSV backup |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `Qwen3-2B-base` | `/zhdd/home/tjshen/260415_ArcherA100/arena_qwen3_base_local32b_5090hao_llama2_20260518` | `746/750` | `10.046%` | `18.289%` | `12.612%` | `746/750` | `0` | `8,439,059` | `results/latest_20260519/arena_qwen3_base_tolerant_summary_20260519.csv` |
+| `V13grad-Qwen3-2B-step10` | `/zhdd/home/tjshen/260415_ArcherA100/arena_hard_v13grad_step10_5090hao_20260514_073934` | `743/750` | `11.033%` | `18.812%` | `13.635%` | `743/750` | `0` | `8,326,465` | `results/latest_20260519/arena_v13grad_step10_tolerant_summary_20260519.csv` |
+| `V13grad-Qwen3-2B-step100` | `/zhdd/home/tjshen/260415_ArcherA100/arena_hard_v13grad_step100_5a100` | `746/750` | `11.932%` | `17.030%` | `13.653%` | `746/750` | `0` | `7,884,054` | `results/latest_20260519/arena_v13grad_step100_tolerant_summary_20260519.csv` |
+| `V15-Qwen3-2B-step100` | `/zhdd/home/tjshen/260415_ArcherA100/arena_hard_v15_step100_20260516` | `750/750` | `13.062%` | `26.775%` | `17.587%` | `744/750` | `6` | `8,038,896` | `results/latest_20260519/arena_v15_step100_tolerant_summary_20260519.csv` |
+
+Token usage CSV backups: `arena_qwen3_base_token_usage_20260519.csv`, `arena_v13grad_step10_token_usage_20260519.csv`, `arena_v13grad_step100_token_usage_20260519.csv`, and `arena_v15_step100_token_usage_20260519.csv` in `results/latest_20260519/`.
+
+V15 step500 check: `/zhdd/home/tjshen/260415_ArcherA100/arena_hard_v15_step500_20260519` is not accepted as a valid step500 Arena result. Its `model_answer` and local-judge JSONL files are byte-identical to the `V15-Qwen3-2B-step100` files, while the run log references `global_step_500_merged`. This is a config/output mismatch, so only the confirmed step100 score is recorded.
+
+V13 GradSketch step200 retry status: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_qwen3_2b_step200_lcb_20260519` contains a first LCB summary with `-` values and a later `code_lcb_V13-Qwen3-2B-GradSketch-step200_v3` run that had predictions but no final summary at scan time. The AIME retry logs failed during vLLM startup because GPU memory was already occupied. No new numeric V13 GradSketch step200 metric is promoted from this retry.
+
+### V14 Round6 Qwen2.5-1.5B
+
+Source summary CSV: `results/latest_20260519/v14_round6_summary_20260519.csv`. These rows use the 32k math/AIME outputs and the latest valid LCB summary; for step100, the later `20260519_052624` LCB summary contains only `-` values, so the valid `20260519_044304` summary is used.
+
+| Model | Step | Math500 pass@1 | AIME24 avg@64 | AIME24 pass@64 | AIME25 avg@64 | AIME25 pass@64 | LCB gen | LCB exec | LCB test_output | LCB total | LCB mean |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `V14-R6-Qwen25-1_5B-step50` | `50` | `46.8%` | `1.7188%` | `26.6667%` | `0.7292%` | `23.3333%` | `15.00%` | `30.06%` | `5.66%` | `50.72%` | `16.91%` |
+| `V14-R6-Qwen25-1_5B-step100` | `100` | `50.2%` | `2.1875%` | `26.6667%` | `0.4688%` | `20.0000%` | `15.00%` | `29.23%` | `3.17%` | `47.40%` | `15.80%` |
+| `V14-R6-Qwen25-1_5B-step150` | `150` | `48.0%` | `2.0833%` | `23.3333%` | `0.7292%` | `23.3333%` | `14.75%` | `29.85%` | `2.49%` | `47.09%` | `15.70%` |
+| `V14-R6-Qwen25-1_5B-step200` | `200` | `49.0%` | `2.3958%` | `36.6667%` | `0.5208%` | `13.3333%` | `15.50%` | `30.48%` | `7.92%` | `53.90%` | `17.97%` |
+
+V16 scan status: `/zhdd/home/tjshen/260415_ArcherA100/v16` currently contains checkpoint/config/training-state files but no completed evaluation summaries found by the 2026-05-19 scan.
+
+## V14 Qwen2.5-1.5B Exploratory Backfill
+
+Record date: 2026-05-14. V14 outputs currently have multiple exploratory evaluation folders and are not yet normalized into the official V11/V12/V13 comparison table. They are recorded here to avoid losing raw results.
+
+| Date | Model / run | Dataset | Runs | Metric | Value | Source |
+| --- | --- | --- | ---: | --- | ---: | --- |
+| 2026-05-13 | `v14/eval_results/step_50` | math500 | `1` | `pass@1` | `38.8%` | `/zhdd/home/tjshen/260415_ArcherA100/v14/eval_results/step_50/math500_results.json` |
+| 2026-05-13 | `v14/eval_results/step_50` | AIME24 | `64` | `avg@64/pass@64` | `2.6042% / 23.3333%` | `/zhdd/home/tjshen/260415_ArcherA100/v14/eval_results/step_50/aime24_results.json` |
+| 2026-05-13 | `v14/eval_results/step_50` | AIME25 | `64` | `avg@64/pass@64` | `0.3646% / 16.6667%` | `/zhdd/home/tjshen/260415_ArcherA100/v14/eval_results/step_50/aime25_results.json` |
+| 2026-05-13 | `v14/output_5090_Hao/train_v14_round5_20260513_180222/global_step_50_merged` | math500 | `1` | `pass@1` | `49.2%` | `/zhdd/home/tjshen/260415_ArcherA100/v14/output_5090_Hao/eval_round5_step50_math500.json` |
+| 2026-05-13 | `v14/output_5090_Hao/train_v14_round5_20260513_180222/global_step_50_merged` | AIME24 | `1` | `pass@1` | `3.3%` | `/zhdd/home/tjshen/260415_ArcherA100/v14/output_5090_Hao/eval_round5_step50_aime24.json` |
+| 2026-05-13 | `v14/output_5090_Hao/train_v14_round5_20260513_180222/global_step_50_merged` | AIME25 | `1` | `pass@1` | `3.3%` | `/zhdd/home/tjshen/260415_ArcherA100/v14/output_5090_Hao/eval_round5_step50_aime25.json` |
+
+Other exploratory V14 math500 references: `base_model=41.0%`, `base_model_v2=46.8%`, `round2_step50_v2=48.8%`, all under `/zhdd/home/tjshen/260415_ArcherA100/v14/eval_results`. Treat these as debug references until the V14 evaluation protocol is fixed.
 
 ## Arena-Hard Local 32B Judge (`answer temp=0.6`, `judge temp=0.0`)
 
@@ -174,6 +317,11 @@ The attempted API judge run with `gpt-4o-mini` on our 1.5B models stopped early:
 
 | Record Date | Server | Model | Eval Target | Dataset | Metric | Value | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-05-09 | 5090_Hao | ArcherCodeR-V13-Qwen3-2B-5090Lian-step200 | `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200-merged` | math500 | `pass@1` | `74.4000%` | Full Math500 under current V13 math policy, `MAX_TOKENS=8192`. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/math500_pass1/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/math500/average_accuracy.txt`. |
+| 2026-05-09 | 5090_Hao | ArcherCodeR-V13-Qwen3-2B-5090Lian-step200 | `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200-merged` | AIME24 | `avg@64` | `9.6354%` | Full 64-run AIME24 under current V13 math policy, `MAX_TOKENS=8192`. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/avg64_aime24/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/aime24/average_accuracy.txt`. |
+| 2026-05-09 | local | ArcherCodeR-V13-Qwen3-2B-5090Lian-step200 | `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200-merged` | AIME24 | `pass@64` | `46.6667%` | Computed by script from 64 `run*_inference_eval_results.csv` files in `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/avg64_aime24/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/aime24`; 30 items. |
+| 2026-05-09 | 5090_Hao | ArcherCodeR-V13-Qwen3-2B-5090Lian-step200 | `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200-merged` | AIME25 | `avg@64` | `13.8021%` | Full 64-run AIME25 under current V13 math policy, `MAX_TOKENS=8192`. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/avg64_aime25/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/aime25/average_accuracy.txt`. |
+| 2026-05-09 | local | ArcherCodeR-V13-Qwen3-2B-5090Lian-step200 | `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200-merged` | AIME25 | `pass@64` | `36.6667%` | Computed by script from 64 `run*_inference_eval_results.csv` files in `/zhdd/home/tjshen/260415_ArcherA100/eval_results_v13_math_20260508_llama2_vllm_copy_5090Hao_8192/avg64_aime25/ArcherCodeR-V13-Qwen3-2B-5090Lian-step200/aime25`; 30 items. |
 | 2026-04-27 | 5090_Hao | ArcherCodeR-V12-Qwen3-2B-8A100-step100 | `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-8A100-step100-merged` | AIME24 | `avg@64` | `22.2396%` | Corrected AIME24 rerun. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_qwen3_2b_20260424_mmfix/avg64_aime24/ArcherCodeR-V12-Qwen3-2B-8A100-step100/aime24/average_accuracy.txt`. |
 | 2026-04-27 | 5090_Hao | ArcherCodeR-V12-Qwen3-2B-8A100-step100 | `/zhdd/home/tjshen/260415_ArcherA100/qwen3_2b_eval_models/ArcherCodeR-V12-Qwen3-2B-8A100-step100-merged` | AIME24 | `pass@64` | `73.3333%` | Computed by script from 64 `run*_inference_eval_results.csv` files in `/zhdd/home/tjshen/260415_ArcherA100/eval_results_qwen3_2b_20260424_mmfix/avg64_aime24/ArcherCodeR-V12-Qwen3-2B-8A100-step100/aime24`. |
 | 2026-04-27 | 5090_Hao | Qwen3-2B-base | `/zhdd/home/tjshen/260415_ArcherA100/model_overlays/Qwen3-2B_with_generation_config` | AIME24 | `avg@64` | `21.1979%` | Corrected AIME24 rerun. Source: `/zhdd/home/tjshen/260415_ArcherA100/eval_results_qwen3_2b_20260424_mmfix/avg64_aime24/Qwen3-2B-base/aime24/average_accuracy.txt`. |

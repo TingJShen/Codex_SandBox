@@ -1,0 +1,4 @@
+model,category,score_percent,score_count,used_rows,dropped_rows
+Qwen3-2B-base,creative_writing,18.289,976,249,0
+Qwen3-2B-base,hard_prompt,10.046,2160,497,0
+Qwen3-2B-base,__overall__,12.612,3136,746,0

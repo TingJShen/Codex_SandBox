@@ -13,6 +13,7 @@ It is intentionally lightweight: it keeps procedures, manifests, scripts, result
 | `BATCH_AWARE_DATA_SHAPLEY_GRPO_V13_20260515.md` | Batch-aware Taylor / Data Shapley formulation for the planned V13 GRPO sampler. |
 | `CURRENT_PROGRESS_20260507.md` | Last successful live progress snapshot and pending work. |
 | `REMOTE_PATHS_AND_RESUME.md` | Remote paths, resume commands, and monitoring commands. |
+| `results/latest_20260519/` | Small CSV backups from the 2026-05-19 server result backfill. |
 | `code/` | Lightweight V13 source-code snapshot with large/generated files excluded. |
 | `training/` | V13 training workflow, attempt table, live GPU0/GPU7 watcher state, and OOM analysis. |
 | `results/eval_result_log_1_5B.md` | Full local result log copied from `D:\Codex_Sandbox\Huawei_Hard\eval_result_log_1_5B.md`. |
